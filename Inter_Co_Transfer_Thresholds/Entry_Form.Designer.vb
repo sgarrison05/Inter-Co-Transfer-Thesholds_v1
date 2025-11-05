@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Entry_Form
+Partial Class frmEntry
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,9 +22,9 @@ Partial Class Entry_Form
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        GroupBox1 = New GroupBox()
-        RadioButton1 = New RadioButton()
-        RadioButton2 = New RadioButton()
+        grbOrangeStatus = New GroupBox()
+        rdbSend = New RadioButton()
+        rdbReceive = New RadioButton()
         Label9 = New Label()
         Label8 = New Label()
         Label7 = New Label()
@@ -35,58 +35,58 @@ Partial Class Entry_Form
         Label2 = New Label()
         Label1 = New Label()
         lblChildName = New Label()
-        TextBox1 = New TextBox()
-        TextBox2 = New TextBox()
-        DateTimePicker1 = New DateTimePicker()
-        DateTimePicker2 = New DateTimePicker()
-        ComboBox1 = New ComboBox()
-        ComboBox2 = New ComboBox()
-        Label10 = New Label()
-        Label11 = New Label()
-        Label12 = New Label()
-        Label13 = New Label()
+        txbChildName = New TextBox()
+        txbRecSend = New TextBox()
+        dtpStart = New DateTimePicker()
+        dtpEnd = New DateTimePicker()
+        cmbType = New ComboBox()
+        cmbOfficer = New ComboBox()
+        lblProgRptDate = New Label()
+        lblDaysRemainProg = New Label()
+        lblTransThreshold = New Label()
+        lblDaysRemainTrns = New Label()
         Label14 = New Label()
         Label15 = New Label()
-        Button1 = New Button()
-        Button2 = New Button()
+        btnSave = New Button()
+        btnReturn = New Button()
         Label16 = New Label()
-        GroupBox1.SuspendLayout()
+        grbOrangeStatus.SuspendLayout()
         SuspendLayout()
         ' 
-        ' GroupBox1
+        ' grbOrangeStatus
         ' 
-        GroupBox1.BackColor = SystemColors.ControlDarkDark
-        GroupBox1.Controls.Add(RadioButton1)
-        GroupBox1.Controls.Add(RadioButton2)
-        GroupBox1.ForeColor = SystemColors.ButtonHighlight
-        GroupBox1.Location = New Point(18, 88)
-        GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(135, 91)
-        GroupBox1.TabIndex = 27
-        GroupBox1.TabStop = False
-        GroupBox1.Text = "Orange County:"
+        grbOrangeStatus.BackColor = SystemColors.ControlDarkDark
+        grbOrangeStatus.Controls.Add(rdbSend)
+        grbOrangeStatus.Controls.Add(rdbReceive)
+        grbOrangeStatus.ForeColor = SystemColors.ButtonHighlight
+        grbOrangeStatus.Location = New Point(18, 88)
+        grbOrangeStatus.Name = "grbOrangeStatus"
+        grbOrangeStatus.Size = New Size(135, 91)
+        grbOrangeStatus.TabIndex = 27
+        grbOrangeStatus.TabStop = False
+        grbOrangeStatus.Text = "Orange County:"
         ' 
-        ' RadioButton1
+        ' rdbSend
         ' 
-        RadioButton1.AutoSize = True
-        RadioButton1.Location = New Point(6, 22)
-        RadioButton1.Name = "RadioButton1"
-        RadioButton1.Size = New Size(68, 19)
-        RadioButton1.TabIndex = 14
-        RadioButton1.TabStop = True
-        RadioButton1.Text = "Sending"
-        RadioButton1.UseVisualStyleBackColor = True
+        rdbSend.AutoSize = True
+        rdbSend.Location = New Point(6, 22)
+        rdbSend.Name = "rdbSend"
+        rdbSend.Size = New Size(68, 19)
+        rdbSend.TabIndex = 14
+        rdbSend.TabStop = True
+        rdbSend.Text = "Sending"
+        rdbSend.UseVisualStyleBackColor = True
         ' 
-        ' RadioButton2
+        ' rdbReceive
         ' 
-        RadioButton2.AutoSize = True
-        RadioButton2.Location = New Point(6, 54)
-        RadioButton2.Name = "RadioButton2"
-        RadioButton2.Size = New Size(76, 19)
-        RadioButton2.TabIndex = 15
-        RadioButton2.TabStop = True
-        RadioButton2.Text = "Receiving"
-        RadioButton2.UseVisualStyleBackColor = True
+        rdbReceive.AutoSize = True
+        rdbReceive.Location = New Point(6, 54)
+        rdbReceive.Name = "rdbReceive"
+        rdbReceive.Size = New Size(76, 19)
+        rdbReceive.TabIndex = 15
+        rdbReceive.TabStop = True
+        rdbReceive.Text = "Receiving"
+        rdbReceive.UseVisualStyleBackColor = True
         ' 
         ' Label9
         ' 
@@ -178,89 +178,89 @@ Partial Class Entry_Form
         lblChildName.TabIndex = 17
         lblChildName.Text = "Child Name:"
         ' 
-        ' TextBox1
+        ' txbChildName
         ' 
-        TextBox1.Font = New Font("Segoe UI", 12F)
-        TextBox1.Location = New Point(16, 39)
-        TextBox1.Name = "TextBox1"
-        TextBox1.Size = New Size(335, 29)
-        TextBox1.TabIndex = 28
+        txbChildName.Font = New Font("Segoe UI", 12F)
+        txbChildName.Location = New Point(16, 39)
+        txbChildName.Name = "txbChildName"
+        txbChildName.Size = New Size(335, 29)
+        txbChildName.TabIndex = 28
         ' 
-        ' TextBox2
+        ' txbRecSend
         ' 
-        TextBox2.Font = New Font("Segoe UI", 12F)
-        TextBox2.Location = New Point(173, 148)
-        TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(178, 29)
-        TextBox2.TabIndex = 29
+        txbRecSend.Font = New Font("Segoe UI", 12F)
+        txbRecSend.Location = New Point(173, 148)
+        txbRecSend.Name = "txbRecSend"
+        txbRecSend.Size = New Size(178, 29)
+        txbRecSend.TabIndex = 29
         ' 
-        ' DateTimePicker1
+        ' dtpStart
         ' 
-        DateTimePicker1.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DateTimePicker1.Format = DateTimePickerFormat.Short
-        DateTimePicker1.Location = New Point(16, 236)
-        DateTimePicker1.Name = "DateTimePicker1"
-        DateTimePicker1.Size = New Size(137, 29)
-        DateTimePicker1.TabIndex = 30
+        dtpStart.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        dtpStart.Format = DateTimePickerFormat.Short
+        dtpStart.Location = New Point(16, 236)
+        dtpStart.Name = "dtpStart"
+        dtpStart.Size = New Size(137, 29)
+        dtpStart.TabIndex = 30
         ' 
-        ' DateTimePicker2
+        ' dtpEnd
         ' 
-        DateTimePicker2.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        DateTimePicker2.Format = DateTimePickerFormat.Short
-        DateTimePicker2.Location = New Point(203, 236)
-        DateTimePicker2.Name = "DateTimePicker2"
-        DateTimePicker2.Size = New Size(137, 29)
-        DateTimePicker2.TabIndex = 31
+        dtpEnd.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        dtpEnd.Format = DateTimePickerFormat.Short
+        dtpEnd.Location = New Point(203, 236)
+        dtpEnd.Name = "dtpEnd"
+        dtpEnd.Size = New Size(137, 29)
+        dtpEnd.TabIndex = 31
         ' 
-        ' ComboBox1
+        ' cmbType
         ' 
-        ComboBox1.Font = New Font("Segoe UI", 12F)
-        ComboBox1.FormattingEnabled = True
-        ComboBox1.Location = New Point(371, 148)
-        ComboBox1.Name = "ComboBox1"
-        ComboBox1.Size = New Size(135, 29)
-        ComboBox1.TabIndex = 32
+        cmbType.Font = New Font("Segoe UI", 12F)
+        cmbType.FormattingEnabled = True
+        cmbType.Location = New Point(371, 148)
+        cmbType.Name = "cmbType"
+        cmbType.Size = New Size(135, 29)
+        cmbType.TabIndex = 32
         ' 
-        ' ComboBox2
+        ' cmbOfficer
         ' 
-        ComboBox2.Font = New Font("Segoe UI", 12F)
-        ComboBox2.FormattingEnabled = True
-        ComboBox2.Location = New Point(529, 147)
-        ComboBox2.Name = "ComboBox2"
-        ComboBox2.Size = New Size(161, 29)
-        ComboBox2.TabIndex = 33
+        cmbOfficer.Font = New Font("Segoe UI", 12F)
+        cmbOfficer.FormattingEnabled = True
+        cmbOfficer.Location = New Point(529, 147)
+        cmbOfficer.Name = "cmbOfficer"
+        cmbOfficer.Size = New Size(161, 29)
+        cmbOfficer.TabIndex = 33
         ' 
-        ' Label10
+        ' lblProgRptDate
         ' 
-        Label10.BorderStyle = BorderStyle.FixedSingle
-        Label10.Location = New Point(18, 337)
-        Label10.Name = "Label10"
-        Label10.Size = New Size(103, 23)
-        Label10.TabIndex = 34
+        lblProgRptDate.BorderStyle = BorderStyle.FixedSingle
+        lblProgRptDate.Location = New Point(18, 337)
+        lblProgRptDate.Name = "lblProgRptDate"
+        lblProgRptDate.Size = New Size(103, 23)
+        lblProgRptDate.TabIndex = 34
         ' 
-        ' Label11
+        ' lblDaysRemainProg
         ' 
-        Label11.BorderStyle = BorderStyle.FixedSingle
-        Label11.Location = New Point(173, 337)
-        Label11.Name = "Label11"
-        Label11.Size = New Size(57, 23)
-        Label11.TabIndex = 35
+        lblDaysRemainProg.BorderStyle = BorderStyle.FixedSingle
+        lblDaysRemainProg.Location = New Point(173, 337)
+        lblDaysRemainProg.Name = "lblDaysRemainProg"
+        lblDaysRemainProg.Size = New Size(57, 23)
+        lblDaysRemainProg.TabIndex = 35
         ' 
-        ' Label12
+        ' lblTransThreshold
         ' 
-        Label12.BorderStyle = BorderStyle.FixedSingle
-        Label12.Location = New Point(414, 337)
-        Label12.Name = "Label12"
-        Label12.Size = New Size(103, 23)
-        Label12.TabIndex = 36
+        lblTransThreshold.BorderStyle = BorderStyle.FixedSingle
+        lblTransThreshold.Location = New Point(414, 337)
+        lblTransThreshold.Name = "lblTransThreshold"
+        lblTransThreshold.Size = New Size(103, 23)
+        lblTransThreshold.TabIndex = 36
         ' 
-        ' Label13
+        ' lblDaysRemainTrns
         ' 
-        Label13.BorderStyle = BorderStyle.FixedSingle
-        Label13.Location = New Point(558, 337)
-        Label13.Name = "Label13"
-        Label13.Size = New Size(57, 23)
-        Label13.TabIndex = 37
+        lblDaysRemainTrns.BorderStyle = BorderStyle.FixedSingle
+        lblDaysRemainTrns.Location = New Point(558, 337)
+        lblDaysRemainTrns.Name = "lblDaysRemainTrns"
+        lblDaysRemainTrns.Size = New Size(57, 23)
+        lblDaysRemainTrns.TabIndex = 37
         ' 
         ' Label14
         ' 
@@ -280,25 +280,25 @@ Partial Class Entry_Form
         Label15.Text = "Days"
         Label15.TextAlign = ContentAlignment.BottomLeft
         ' 
-        ' Button1
+        ' btnSave
         ' 
-        Button1.BackColor = Color.FromArgb(CByte(0), CByte(192), CByte(0))
-        Button1.Location = New Point(617, 21)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(75, 40)
-        Button1.TabIndex = 40
-        Button1.Text = "Save"
-        Button1.UseVisualStyleBackColor = False
+        btnSave.BackColor = Color.FromArgb(CByte(0), CByte(192), CByte(0))
+        btnSave.Location = New Point(617, 21)
+        btnSave.Name = "btnSave"
+        btnSave.Size = New Size(75, 40)
+        btnSave.TabIndex = 40
+        btnSave.Text = "Save"
+        btnSave.UseVisualStyleBackColor = False
         ' 
-        ' Button2
+        ' btnReturn
         ' 
-        Button2.BackColor = Color.Gold
-        Button2.Location = New Point(617, 71)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(75, 40)
-        Button2.TabIndex = 41
-        Button2.Text = "Rtn Main"
-        Button2.UseVisualStyleBackColor = False
+        btnReturn.BackColor = Color.Gold
+        btnReturn.Location = New Point(617, 71)
+        btnReturn.Name = "btnReturn"
+        btnReturn.Size = New Size(75, 40)
+        btnReturn.TabIndex = 41
+        btnReturn.Text = "Rtn Main"
+        btnReturn.UseVisualStyleBackColor = False
         ' 
         ' Label16
         ' 
@@ -310,27 +310,30 @@ Partial Class Entry_Form
         Label16.TabIndex = 42
         Label16.Text = "--->"
         ' 
-        ' Entry_Form
+        ' frmEntry
         ' 
+        AcceptButton = btnSave
+        AccessibleRole = AccessibleRole.Caret
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        CancelButton = btnReturn
         ClientSize = New Size(719, 394)
         Controls.Add(Label16)
-        Controls.Add(Button2)
-        Controls.Add(Button1)
+        Controls.Add(btnReturn)
+        Controls.Add(btnSave)
         Controls.Add(Label15)
         Controls.Add(Label14)
-        Controls.Add(Label13)
-        Controls.Add(Label12)
-        Controls.Add(Label11)
-        Controls.Add(Label10)
-        Controls.Add(ComboBox2)
-        Controls.Add(ComboBox1)
-        Controls.Add(DateTimePicker2)
-        Controls.Add(DateTimePicker1)
-        Controls.Add(TextBox2)
-        Controls.Add(TextBox1)
-        Controls.Add(GroupBox1)
+        Controls.Add(lblDaysRemainTrns)
+        Controls.Add(lblTransThreshold)
+        Controls.Add(lblDaysRemainProg)
+        Controls.Add(lblProgRptDate)
+        Controls.Add(cmbOfficer)
+        Controls.Add(cmbType)
+        Controls.Add(dtpEnd)
+        Controls.Add(dtpStart)
+        Controls.Add(txbRecSend)
+        Controls.Add(txbChildName)
+        Controls.Add(grbOrangeStatus)
         Controls.Add(Label9)
         Controls.Add(Label8)
         Controls.Add(Label7)
@@ -341,17 +344,17 @@ Partial Class Entry_Form
         Controls.Add(Label2)
         Controls.Add(Label1)
         Controls.Add(lblChildName)
-        Name = "Entry_Form"
-        Text = "Entry_Form"
-        GroupBox1.ResumeLayout(False)
-        GroupBox1.PerformLayout()
+        Name = "frmEntry"
+        Text = "Entry Form"
+        grbOrangeStatus.ResumeLayout(False)
+        grbOrangeStatus.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents RadioButton1 As RadioButton
-    Friend WithEvents RadioButton2 As RadioButton
+    Friend WithEvents grbOrangeStatus As GroupBox
+    Friend WithEvents rdbSend As RadioButton
+    Friend WithEvents rdbReceive As RadioButton
     Friend WithEvents Label9 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label7 As Label
@@ -362,19 +365,19 @@ Partial Class Entry_Form
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents lblChildName As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents DateTimePicker1 As DateTimePicker
-    Friend WithEvents DateTimePicker2 As DateTimePicker
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents ComboBox2 As ComboBox
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Label11 As Label
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Label13 As Label
+    Friend WithEvents txbChildName As TextBox
+    Friend WithEvents txbRecSend As TextBox
+    Friend WithEvents dtpStart As DateTimePicker
+    Friend WithEvents dtpEnd As DateTimePicker
+    Friend WithEvents cmbType As ComboBox
+    Friend WithEvents cmbOfficer As ComboBox
+    Friend WithEvents lblProgRptDate As Label
+    Friend WithEvents lblDaysRemainProg As Label
+    Friend WithEvents lblTransThreshold As Label
+    Friend WithEvents lblDaysRemainTrns As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents Label15 As Label
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents btnSave As Button
+    Friend WithEvents btnReturn As Button
     Friend WithEvents Label16 As Label
 End Class

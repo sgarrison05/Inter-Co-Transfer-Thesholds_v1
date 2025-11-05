@@ -1,3 +1,3 @@
-﻿Public Class Entry_Form
+﻿Public Class frmEntry
 
 End Class

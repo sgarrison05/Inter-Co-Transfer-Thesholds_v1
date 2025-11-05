@@ -22,8 +22,8 @@ Partial Class frmMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        lblListingID = New Label()
         lblListing = New Label()
-        Listing = New Label()
         btnAdd = New Button()
         btnDelete = New Button()
         brnClose = New Button()
@@ -31,25 +31,25 @@ Partial Class frmMain
         lblToday = New Label()
         SuspendLayout()
         ' 
+        ' lblListingID
+        ' 
+        lblListingID.AutoSize = True
+        lblListingID.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblListingID.ForeColor = Color.Blue
+        lblListingID.Location = New Point(12, 85)
+        lblListingID.Name = "lblListingID"
+        lblListingID.Size = New Size(333, 32)
+        lblListingID.TabIndex = 0
+        lblListingID.Text = "Listing of Current Transfers:" & vbCrLf
+        ' 
         ' lblListing
         ' 
-        lblListing.AutoSize = True
-        lblListing.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblListing.ForeColor = Color.Blue
-        lblListing.Location = New Point(12, 85)
+        lblListing.BackColor = SystemColors.ActiveCaptionText
+        lblListing.ForeColor = SystemColors.Control
+        lblListing.Location = New Point(12, 121)
         lblListing.Name = "lblListing"
-        lblListing.Size = New Size(333, 32)
-        lblListing.TabIndex = 0
-        lblListing.Text = "Listing of Current Transfers:" & vbCrLf
-        ' 
-        ' Listing
-        ' 
-        Listing.BackColor = SystemColors.ActiveCaptionText
-        Listing.ForeColor = SystemColors.Control
-        Listing.Location = New Point(12, 121)
-        Listing.Name = "Listing"
-        Listing.Size = New Size(1047, 399)
-        Listing.TabIndex = 1
+        lblListing.Size = New Size(1047, 399)
+        lblListing.TabIndex = 1
         ' 
         ' btnAdd
         ' 
@@ -112,16 +112,16 @@ Partial Class frmMain
         Controls.Add(brnClose)
         Controls.Add(btnDelete)
         Controls.Add(btnAdd)
-        Controls.Add(Listing)
         Controls.Add(lblListing)
+        Controls.Add(lblListingID)
         Name = "frmMain"
         Text = "Inter County Transfer Thresholds"
         ResumeLayout(False)
         PerformLayout()
     End Sub
 
+    Friend WithEvents lblListingID As Label
     Friend WithEvents lblListing As Label
-    Friend WithEvents Listing As Label
     Friend WithEvents btnAdd As Button
     Friend WithEvents btnDelete As Button
     Friend WithEvents brnClose As Button
