@@ -14,6 +14,8 @@ Public Class frmMain
     Public Const rdirectory As String = "D:\Temp\Transfers"
     Public Const rfile As String = "D:\Temp\Transfers\ICT_Thresholds.txt"
 
+    '------------------------------ Form Events --------------------------------------------------
+
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         Dim button As DialogResult
@@ -39,8 +41,28 @@ Public Class frmMain
         Else
 
             'TODO: Add code to read existing thresholds file and populate form "PullData()"
+            PullData()
+
 
         End If
+
+    End Sub
+
+    '------------------------------ Private Subroutines  -----------------------------------------------
+
+    Private Sub PullData()
+
+        Dim myText As String
+        Dim newLineIndex As Integer = 0
+        Dim entryIndex As Integer = 0
+        Dim entry As String
+        Dim myEntry As String = Nothing
+
+        myText = My.Computer.FileSystem.ReadAllText(rfile)
+
+        lblListing.Text = myText
+
+        'TODO: Add code for Formatting lblLIsting.Text
 
     End Sub
 
