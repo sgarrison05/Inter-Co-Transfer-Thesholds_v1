@@ -174,9 +174,9 @@ Partial Class frmEntry
         lblChildName.AutoSize = True
         lblChildName.Location = New Point(16, 21)
         lblChildName.Name = "lblChildName"
-        lblChildName.Size = New Size(73, 15)
+        lblChildName.Size = New Size(133, 15)
         lblChildName.TabIndex = 17
-        lblChildName.Text = "Child Name:"
+        lblChildName.Text = "Child Name: (Last, First)"
         ' 
         ' txbChildName
         ' 
