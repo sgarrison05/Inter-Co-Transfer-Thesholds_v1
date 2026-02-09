@@ -28,16 +28,16 @@ Partial Class frmMain
         btnDelete = New Button()
         lblDateID = New Label()
         lblTotalChildren = New Label()
-        Label1 = New Label()
-        Label2 = New Label()
+        lblTotReceived = New Label()
+        lblTotSent = New Label()
         Label5 = New Label()
         Label6 = New Label()
         Label7 = New Label()
         Label8 = New Label()
         Label9 = New Label()
-        DateTimePicker1 = New DateTimePicker()
-        DateTimePicker2 = New DateTimePicker()
-        DateTimePicker3 = New DateTimePicker()
+        dtpNinety = New DateTimePicker()
+        dtpOneEighty = New DateTimePicker()
+        dtpToday = New DateTimePicker()
         brnClose = New Button()
         Button1 = New Button()
         SuspendLayout()
@@ -47,7 +47,7 @@ Partial Class frmMain
         lblListingID.AutoSize = True
         lblListingID.Font = New Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         lblListingID.ForeColor = Color.Blue
-        lblListingID.Location = New Point(12, 85)
+        lblListingID.Location = New Point(12, 15)
         lblListingID.Name = "lblListingID"
         lblListingID.Size = New Size(333, 32)
         lblListingID.TabIndex = 0
@@ -58,7 +58,7 @@ Partial Class frmMain
         lblListing.BackColor = SystemColors.ActiveCaptionText
         lblListing.Font = New Font("Cascadia Mono", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         lblListing.ForeColor = SystemColors.Control
-        lblListing.Location = New Point(12, 121)
+        lblListing.Location = New Point(12, 94)
         lblListing.Name = "lblListing"
         lblListing.Size = New Size(1164, 290)
         lblListing.TabIndex = 1
@@ -66,7 +66,7 @@ Partial Class frmMain
         ' btnAdd
         ' 
         btnAdd.BackColor = Color.Green
-        btnAdd.Location = New Point(12, 27)
+        btnAdd.Location = New Point(661, 558)
         btnAdd.Name = "btnAdd"
         btnAdd.Size = New Size(75, 39)
         btnAdd.TabIndex = 2
@@ -76,7 +76,7 @@ Partial Class frmMain
         ' btnDelete
         ' 
         btnDelete.BackColor = Color.Red
-        btnDelete.Location = New Point(233, 27)
+        btnDelete.Location = New Point(882, 558)
         btnDelete.Name = "btnDelete"
         btnDelete.Size = New Size(75, 39)
         btnDelete.TabIndex = 3
@@ -87,7 +87,7 @@ Partial Class frmMain
         ' 
         lblDateID.AutoSize = True
         lblDateID.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        lblDateID.Location = New Point(826, 15)
+        lblDateID.Location = New Point(965, 15)
         lblDateID.Name = "lblDateID"
         lblDateID.Size = New Size(100, 21)
         lblDateID.TabIndex = 5
@@ -96,29 +96,30 @@ Partial Class frmMain
         ' lblTotalChildren
         ' 
         lblTotalChildren.BorderStyle = BorderStyle.FixedSingle
-        lblTotalChildren.Font = New Font("Segoe UI", 12F)
+        lblTotalChildren.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         lblTotalChildren.Location = New Point(17, 444)
         lblTotalChildren.Name = "lblTotalChildren"
         lblTotalChildren.Size = New Size(75, 23)
         lblTotalChildren.TabIndex = 7
+        lblTotalChildren.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Label1
+        ' lblTotReceived
         ' 
-        Label1.BorderStyle = BorderStyle.FixedSingle
-        Label1.Font = New Font("Segoe UI", 12F)
-        Label1.Location = New Point(154, 444)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(75, 23)
-        Label1.TabIndex = 8
+        lblTotReceived.BorderStyle = BorderStyle.FixedSingle
+        lblTotReceived.Font = New Font("Segoe UI", 12F)
+        lblTotReceived.Location = New Point(154, 444)
+        lblTotReceived.Name = "lblTotReceived"
+        lblTotReceived.Size = New Size(75, 23)
+        lblTotReceived.TabIndex = 8
         ' 
-        ' Label2
+        ' lblTotSent
         ' 
-        Label2.BorderStyle = BorderStyle.FixedSingle
-        Label2.Font = New Font("Segoe UI", 12F)
-        Label2.Location = New Point(294, 444)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(75, 23)
-        Label2.TabIndex = 9
+        lblTotSent.BorderStyle = BorderStyle.FixedSingle
+        lblTotSent.Font = New Font("Segoe UI", 12F)
+        lblTotSent.Location = New Point(294, 444)
+        lblTotSent.Name = "lblTotSent"
+        lblTotSent.Size = New Size(75, 23)
+        lblTotSent.TabIndex = 9
         ' 
         ' Label5
         ' 
@@ -170,37 +171,38 @@ Partial Class frmMain
         Label9.TabIndex = 16
         Label9.Text = "180 Days from Today:"
         ' 
-        ' DateTimePicker1
+        ' dtpNinety
         ' 
-        DateTimePicker1.Font = New Font("Segoe UI", 11.25F)
-        DateTimePicker1.Format = DateTimePickerFormat.Short
-        DateTimePicker1.Location = New Point(17, 514)
-        DateTimePicker1.Name = "DateTimePicker1"
-        DateTimePicker1.Size = New Size(131, 27)
-        DateTimePicker1.TabIndex = 17
+        dtpNinety.Font = New Font("Segoe UI", 11.25F)
+        dtpNinety.Format = DateTimePickerFormat.Short
+        dtpNinety.Location = New Point(17, 514)
+        dtpNinety.Name = "dtpNinety"
+        dtpNinety.Size = New Size(131, 27)
+        dtpNinety.TabIndex = 17
         ' 
-        ' DateTimePicker2
+        ' dtpOneEighty
         ' 
-        DateTimePicker2.Font = New Font("Segoe UI", 11.25F)
-        DateTimePicker2.Format = DateTimePickerFormat.Short
-        DateTimePicker2.Location = New Point(17, 576)
-        DateTimePicker2.Name = "DateTimePicker2"
-        DateTimePicker2.Size = New Size(131, 27)
-        DateTimePicker2.TabIndex = 18
+        dtpOneEighty.Font = New Font("Segoe UI", 11.25F)
+        dtpOneEighty.Format = DateTimePickerFormat.Short
+        dtpOneEighty.Location = New Point(17, 576)
+        dtpOneEighty.Name = "dtpOneEighty"
+        dtpOneEighty.Size = New Size(131, 27)
+        dtpOneEighty.TabIndex = 18
         ' 
-        ' DateTimePicker3
+        ' dtpToday
         ' 
-        DateTimePicker3.Font = New Font("Segoe UI", 11.25F)
-        DateTimePicker3.Format = DateTimePickerFormat.Short
-        DateTimePicker3.Location = New Point(826, 39)
-        DateTimePicker3.Name = "DateTimePicker3"
-        DateTimePicker3.Size = New Size(131, 27)
-        DateTimePicker3.TabIndex = 19
+        dtpToday.Enabled = False
+        dtpToday.Font = New Font("Segoe UI", 11.25F)
+        dtpToday.Format = DateTimePickerFormat.Short
+        dtpToday.Location = New Point(965, 39)
+        dtpToday.Name = "dtpToday"
+        dtpToday.Size = New Size(131, 27)
+        dtpToday.TabIndex = 19
         ' 
         ' brnClose
         ' 
         brnClose.BackColor = Color.SkyBlue
-        brnClose.Location = New Point(345, 27)
+        brnClose.Location = New Point(994, 558)
         brnClose.Name = "brnClose"
         brnClose.Size = New Size(75, 39)
         brnClose.TabIndex = 4
@@ -210,7 +212,7 @@ Partial Class frmMain
         ' Button1
         ' 
         Button1.BackColor = Color.Gold
-        Button1.Location = New Point(121, 27)
+        Button1.Location = New Point(770, 558)
         Button1.Name = "Button1"
         Button1.Size = New Size(75, 39)
         Button1.TabIndex = 20
@@ -225,16 +227,16 @@ Partial Class frmMain
         CancelButton = brnClose
         ClientSize = New Size(1190, 625)
         Controls.Add(Button1)
-        Controls.Add(DateTimePicker3)
-        Controls.Add(DateTimePicker2)
-        Controls.Add(DateTimePicker1)
+        Controls.Add(dtpToday)
+        Controls.Add(dtpOneEighty)
+        Controls.Add(dtpNinety)
         Controls.Add(Label9)
         Controls.Add(Label8)
         Controls.Add(Label7)
         Controls.Add(Label6)
         Controls.Add(Label5)
-        Controls.Add(Label2)
-        Controls.Add(Label1)
+        Controls.Add(lblTotSent)
+        Controls.Add(lblTotReceived)
         Controls.Add(lblTotalChildren)
         Controls.Add(lblDateID)
         Controls.Add(brnClose)
@@ -256,16 +258,16 @@ Partial Class frmMain
     Friend WithEvents btnDelete As Button
     Friend WithEvents lblDateID As Label
     Friend WithEvents lblTotalChildren As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
+    Friend WithEvents lblTotReceived As Label
+    Friend WithEvents lblTotSent As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
-    Friend WithEvents DateTimePicker1 As DateTimePicker
-    Friend WithEvents DateTimePicker2 As DateTimePicker
-    Friend WithEvents DateTimePicker3 As DateTimePicker
+    Friend WithEvents dtpNinety As DateTimePicker
+    Friend WithEvents dtpOneEighty As DateTimePicker
+    Friend WithEvents dtpToday As DateTimePicker
     Friend WithEvents brnClose As Button
     Friend WithEvents Button1 As Button
 

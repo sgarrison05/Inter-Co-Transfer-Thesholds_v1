@@ -18,6 +18,13 @@ Public Class frmMain
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
 
+        Dim dteToday As Date = Date.Today
+        Dim dteNinety As Date = dteToday.AddDays(90)
+        Dim dteOneEighty As Date = dteToday.AddDays(180)
+
+        dtpNinety.Text = dteNinety.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture)
+        dtpOneEighty.Text = dteOneEighty.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture)
+
         Dim button As DialogResult
 
         If Not My.Computer.FileSystem.FileExists(tfile) Then
@@ -78,6 +85,8 @@ Public Class frmMain
 
         Next
 
+        lblTotalChildren.Text = listing.ToString - 1
+
     End Sub
 
     '------------------------------ Button Events ----------------------------------------------
@@ -94,5 +103,6 @@ Public Class frmMain
         Me.Close()
 
     End Sub
+
 
 End Class
