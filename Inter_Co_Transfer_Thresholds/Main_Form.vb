@@ -1,8 +1,8 @@
 ﻿'Title:         Inter County Transfer Thresholds
 'Purpose:       To manage progress reports and thresholds for inter-county transfers
-'Created:       10312025
+'Created:       October 31, 2025
 'By:            Shon Garrison
-'Last Updated:  10312025
+'Last Updated:  February 5, 2026
 'Version: 1.0
 
 Option Explicit On
@@ -11,8 +11,8 @@ Imports System.Globalization
 Public Class frmMain
 
     Private title As String = "Inter County Transfer Thresholds"
-    Public Const rdirectory As String = "D:\Temp\Transfers"
-    Public Const rfile As String = "D:\Temp\Transfers\ICT_Thresholds.txt"
+    Public Const tdirectory As String = "D:\Temp\Transfers"
+    Public Const tfile As String = "D:\Temp\Transfers\ICT_Thresholds.txt"
 
     '------------------------------ Form Events --------------------------------------------------
 
@@ -20,16 +20,17 @@ Public Class frmMain
 
         Dim button As DialogResult
 
-        If Not My.Computer.FileSystem.FileExists(rfile) Then
+        If Not My.Computer.FileSystem.FileExists(tfile) Then
 
-            button = MessageBox.Show("Thresholds file not found. Create new file?" & vbCrLf &
+            button = MessageBox.Show("Thresholds file not found." & vbCrLf &
                                      "Would you like to Create it?",
                                      title, MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                                      MessageBoxDefaultButton.Button1)
 
             If button = DialogResult.Yes Then
-                frmEntry.ShowDialog()
+
                 Me.Hide()
+                frmEntry.ShowDialog()
 
                 'TODO: Add code to create new file and initialize thresholds "PullData()"
 
@@ -40,7 +41,6 @@ Public Class frmMain
 
         Else
 
-            'TODO: Add code to read existing thresholds file and populate form "PullData()"
             PullData()
 
 
@@ -48,21 +48,50 @@ Public Class frmMain
 
     End Sub
 
-    '------------------------------ Private Subroutines  -----------------------------------------------
+    '------------------------------ Private Subroutines  ---------------------------------------
 
     Private Sub PullData()
 
-        Dim myText As String
-        Dim newLineIndex As Integer = 0
-        Dim entryIndex As Integer = 0
-        Dim entry As String
-        Dim myEntry As String = Nothing
+        Dim myText As String = My.Computer.FileSystem.ReadAllText(tfile)
+        Dim mySentence() As String = Split(myText, vbCrLf)
+        Dim listing As Integer = 1  ' Counter for each record
 
-        myText = My.Computer.FileSystem.ReadAllText(rfile)
+        For Each sentence As String In mySentence
 
-        lblListing.Text = myText
+            If sentence.Contains("/"c) Then
 
-        'TODO: Add code for Formatting lblLIsting.Text
+                Dim words() As String = Split(sentence, vbTab)
+
+                For Each word As String In words
+
+                    If word.Length > 0 Then
+                        Dim paddedWord As String = word.PadRight(20)
+                        sentence = sentence.Replace(word, paddedWord)
+                    End If
+
+                Next
+
+                lblListing.Text &= listing.ToString & ".)  " & sentence & vbCrLf
+                listing += 1
+
+            End If
+
+        Next
+
+    End Sub
+
+    '------------------------------ Button Events ----------------------------------------------
+
+    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+
+        Me.Hide()
+        frmEntry.ShowDialog()
+
+    End Sub
+
+    Private Sub brnClose_Click(sender As Object, e As EventArgs) Handles brnClose.Click
+
+        Me.Close()
 
     End Sub
 

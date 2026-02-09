@@ -56,10 +56,11 @@ Partial Class frmMain
         ' lblListing
         ' 
         lblListing.BackColor = SystemColors.ActiveCaptionText
+        lblListing.Font = New Font("Cascadia Mono", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         lblListing.ForeColor = SystemColors.Control
         lblListing.Location = New Point(12, 121)
         lblListing.Name = "lblListing"
-        lblListing.Size = New Size(1047, 290)
+        lblListing.Size = New Size(1164, 290)
         lblListing.TabIndex = 1
         ' 
         ' btnAdd
@@ -86,7 +87,7 @@ Partial Class frmMain
         ' 
         lblDateID.AutoSize = True
         lblDateID.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        lblDateID.Location = New Point(928, 25)
+        lblDateID.Location = New Point(826, 15)
         lblDateID.Name = "lblDateID"
         lblDateID.Size = New Size(100, 21)
         lblDateID.TabIndex = 5
@@ -100,7 +101,6 @@ Partial Class frmMain
         lblTotalChildren.Name = "lblTotalChildren"
         lblTotalChildren.Size = New Size(75, 23)
         lblTotalChildren.TabIndex = 7
-        lblTotalChildren.Text = "Label1"
         ' 
         ' Label1
         ' 
@@ -110,7 +110,6 @@ Partial Class frmMain
         Label1.Name = "Label1"
         Label1.Size = New Size(75, 23)
         Label1.TabIndex = 8
-        Label1.Text = "Label1"
         ' 
         ' Label2
         ' 
@@ -120,7 +119,6 @@ Partial Class frmMain
         Label2.Name = "Label2"
         Label2.Size = New Size(75, 23)
         Label2.TabIndex = 9
-        Label2.Text = "Label1"
         ' 
         ' Label5
         ' 
@@ -194,7 +192,7 @@ Partial Class frmMain
         ' 
         DateTimePicker3.Font = New Font("Segoe UI", 11.25F)
         DateTimePicker3.Format = DateTimePickerFormat.Short
-        DateTimePicker3.Location = New Point(928, 49)
+        DateTimePicker3.Location = New Point(826, 39)
         DateTimePicker3.Name = "DateTimePicker3"
         DateTimePicker3.Size = New Size(131, 27)
         DateTimePicker3.TabIndex = 19
@@ -221,10 +219,11 @@ Partial Class frmMain
         ' 
         ' frmMain
         ' 
+        AcceptButton = btnAdd
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         CancelButton = brnClose
-        ClientSize = New Size(1071, 625)
+        ClientSize = New Size(1190, 625)
         Controls.Add(Button1)
         Controls.Add(DateTimePicker3)
         Controls.Add(DateTimePicker2)
@@ -243,7 +242,9 @@ Partial Class frmMain
         Controls.Add(btnAdd)
         Controls.Add(lblListing)
         Controls.Add(lblListingID)
+        FormBorderStyle = FormBorderStyle.FixedSingle
         Name = "frmMain"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Inter County Transfer Thresholds"
         ResumeLayout(False)
         PerformLayout()
