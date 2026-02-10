@@ -61,7 +61,8 @@ Public Class frmMain
 
         Dim myText As String = My.Computer.FileSystem.ReadAllText(tfile)
         Dim mySentence() As String = Split(myText, vbCrLf)
-        Dim listing As Integer = 1  ' Counter for each record
+        Dim listing As Integer = 0  ' Counter for each record
+        Dim recieve As Integer = 0  ' Counter for receiving County
 
         For Each sentence As String In mySentence
 
@@ -70,22 +71,30 @@ Public Class frmMain
                 Dim words() As String = Split(sentence, vbTab)
 
                 For Each word As String In words
-
                     If word.Length > 0 Then
                         Dim paddedWord As String = word.PadRight(20)
                         sentence = sentence.Replace(word, paddedWord)
                     End If
-
                 Next
+
+                'TODO: Continue formatting once file creation through the application
+                'is complete and data is consistent
+
+                If words(1).TrimEnd = "Orange" Then
+                    recieve += 1
+                End If
 
                 lblListing.Text &= listing.ToString & ".)  " & sentence & vbCrLf
                 listing += 1
 
             End If
 
+
+
         Next
 
-        lblTotalChildren.Text = listing.ToString - 1
+        lblTotalChildren.Text = listing.ToString
+        lblTotReceived.Text = recieve.ToString
 
     End Sub
 

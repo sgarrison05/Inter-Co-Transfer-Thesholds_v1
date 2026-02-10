@@ -22,9 +22,6 @@ Partial Class frmEntry
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        grbOrangeStatus = New GroupBox()
-        rdbSend = New RadioButton()
-        rdbReceive = New RadioButton()
         Label9 = New Label()
         Label8 = New Label()
         Label7 = New Label()
@@ -36,7 +33,7 @@ Partial Class frmEntry
         Label1 = New Label()
         lblChildName = New Label()
         txbChildName = New TextBox()
-        txbRecSend = New TextBox()
+        txbSendCo = New TextBox()
         dtpStart = New DateTimePicker()
         dtpEnd = New DateTimePicker()
         cmbType = New ComboBox()
@@ -50,43 +47,9 @@ Partial Class frmEntry
         btnSave = New Button()
         btnReturn = New Button()
         Label16 = New Label()
-        grbOrangeStatus.SuspendLayout()
+        txbReceiveCo = New TextBox()
+        Label10 = New Label()
         SuspendLayout()
-        ' 
-        ' grbOrangeStatus
-        ' 
-        grbOrangeStatus.BackColor = SystemColors.ControlDarkDark
-        grbOrangeStatus.Controls.Add(rdbSend)
-        grbOrangeStatus.Controls.Add(rdbReceive)
-        grbOrangeStatus.ForeColor = SystemColors.ButtonHighlight
-        grbOrangeStatus.Location = New Point(18, 88)
-        grbOrangeStatus.Name = "grbOrangeStatus"
-        grbOrangeStatus.Size = New Size(135, 91)
-        grbOrangeStatus.TabIndex = 27
-        grbOrangeStatus.TabStop = False
-        grbOrangeStatus.Text = "Orange County:"
-        ' 
-        ' rdbSend
-        ' 
-        rdbSend.AutoSize = True
-        rdbSend.Location = New Point(6, 22)
-        rdbSend.Name = "rdbSend"
-        rdbSend.Size = New Size(68, 19)
-        rdbSend.TabIndex = 14
-        rdbSend.TabStop = True
-        rdbSend.Text = "Sending"
-        rdbSend.UseVisualStyleBackColor = True
-        ' 
-        ' rdbReceive
-        ' 
-        rdbReceive.AutoSize = True
-        rdbReceive.Location = New Point(6, 54)
-        rdbReceive.Name = "rdbReceive"
-        rdbReceive.Size = New Size(76, 19)
-        rdbReceive.TabIndex = 15
-        rdbReceive.TabStop = True
-        rdbReceive.Text = "Receiving"
-        rdbReceive.UseVisualStyleBackColor = True
         ' 
         ' Label9
         ' 
@@ -109,16 +72,16 @@ Partial Class frmEntry
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.Location = New Point(173, 121)
+        Label7.Location = New Point(205, 131)
         Label7.Name = "Label7"
-        Label7.Size = New Size(151, 15)
+        Label7.Size = New Size(95, 15)
         Label7.TabIndex = 24
-        Label7.Text = "Receiving/Sending County:"
+        Label7.Text = "Sending County:"
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Location = New Point(369, 121)
+        Label6.Location = New Point(395, 131)
         Label6.Name = "Label6"
         Label6.Size = New Size(34, 15)
         Label6.TabIndex = 23
@@ -127,7 +90,7 @@ Partial Class frmEntry
         ' Label5
         ' 
         Label5.AutoSize = True
-        Label5.Location = New Point(529, 121)
+        Label5.Location = New Point(592, 131)
         Label5.Name = "Label5"
         Label5.Size = New Size(46, 15)
         Label5.TabIndex = 22
@@ -184,15 +147,15 @@ Partial Class frmEntry
         txbChildName.Location = New Point(16, 39)
         txbChildName.Name = "txbChildName"
         txbChildName.Size = New Size(335, 29)
-        txbChildName.TabIndex = 28
+        txbChildName.TabIndex = 0
         ' 
-        ' txbRecSend
+        ' txbSendCo
         ' 
-        txbRecSend.Font = New Font("Segoe UI", 12F)
-        txbRecSend.Location = New Point(173, 148)
-        txbRecSend.Name = "txbRecSend"
-        txbRecSend.Size = New Size(178, 29)
-        txbRecSend.TabIndex = 29
+        txbSendCo.Font = New Font("Segoe UI", 12F)
+        txbSendCo.Location = New Point(205, 158)
+        txbSendCo.Name = "txbSendCo"
+        txbSendCo.Size = New Size(178, 29)
+        txbSendCo.TabIndex = 2
         ' 
         ' dtpStart
         ' 
@@ -201,7 +164,7 @@ Partial Class frmEntry
         dtpStart.Location = New Point(16, 236)
         dtpStart.Name = "dtpStart"
         dtpStart.Size = New Size(137, 29)
-        dtpStart.TabIndex = 30
+        dtpStart.TabIndex = 5
         ' 
         ' dtpEnd
         ' 
@@ -210,25 +173,25 @@ Partial Class frmEntry
         dtpEnd.Location = New Point(203, 236)
         dtpEnd.Name = "dtpEnd"
         dtpEnd.Size = New Size(137, 29)
-        dtpEnd.TabIndex = 31
+        dtpEnd.TabIndex = 6
         ' 
         ' cmbType
         ' 
         cmbType.Font = New Font("Segoe UI", 12F)
         cmbType.FormattingEnabled = True
-        cmbType.Location = New Point(371, 148)
+        cmbType.Location = New Point(395, 158)
         cmbType.Name = "cmbType"
-        cmbType.Size = New Size(135, 29)
-        cmbType.TabIndex = 32
+        cmbType.Size = New Size(187, 29)
+        cmbType.TabIndex = 3
         ' 
         ' cmbOfficer
         ' 
         cmbOfficer.Font = New Font("Segoe UI", 12F)
         cmbOfficer.FormattingEnabled = True
-        cmbOfficer.Location = New Point(529, 147)
+        cmbOfficer.Location = New Point(592, 157)
         cmbOfficer.Name = "cmbOfficer"
-        cmbOfficer.Size = New Size(161, 29)
-        cmbOfficer.TabIndex = 33
+        cmbOfficer.Size = New Size(126, 29)
+        cmbOfficer.TabIndex = 4
         ' 
         ' lblProgRptDate
         ' 
@@ -283,20 +246,20 @@ Partial Class frmEntry
         ' btnSave
         ' 
         btnSave.BackColor = Color.FromArgb(CByte(0), CByte(192), CByte(0))
-        btnSave.Location = New Point(617, 21)
+        btnSave.Location = New Point(643, 21)
         btnSave.Name = "btnSave"
         btnSave.Size = New Size(75, 40)
-        btnSave.TabIndex = 40
+        btnSave.TabIndex = 7
         btnSave.Text = "Save"
         btnSave.UseVisualStyleBackColor = False
         ' 
         ' btnReturn
         ' 
         btnReturn.BackColor = Color.Gold
-        btnReturn.Location = New Point(617, 71)
+        btnReturn.Location = New Point(643, 71)
         btnReturn.Name = "btnReturn"
         btnReturn.Size = New Size(75, 40)
-        btnReturn.TabIndex = 41
+        btnReturn.TabIndex = 8
         btnReturn.Text = "Rtn Main"
         btnReturn.UseVisualStyleBackColor = False
         ' 
@@ -310,6 +273,23 @@ Partial Class frmEntry
         Label16.TabIndex = 42
         Label16.Text = "--->"
         ' 
+        ' txbReceiveCo
+        ' 
+        txbReceiveCo.Font = New Font("Segoe UI", 12F)
+        txbReceiveCo.Location = New Point(16, 157)
+        txbReceiveCo.Name = "txbReceiveCo"
+        txbReceiveCo.Size = New Size(178, 29)
+        txbReceiveCo.TabIndex = 1
+        ' 
+        ' Label10
+        ' 
+        Label10.AutoSize = True
+        Label10.Location = New Point(16, 130)
+        Label10.Name = "Label10"
+        Label10.Size = New Size(103, 15)
+        Label10.TabIndex = 43
+        Label10.Text = "Receiving County:"
+        ' 
         ' frmEntry
         ' 
         AcceptButton = btnSave
@@ -317,7 +297,9 @@ Partial Class frmEntry
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         CancelButton = btnReturn
-        ClientSize = New Size(719, 394)
+        ClientSize = New Size(738, 394)
+        Controls.Add(txbReceiveCo)
+        Controls.Add(Label10)
         Controls.Add(Label16)
         Controls.Add(btnReturn)
         Controls.Add(btnSave)
@@ -331,9 +313,8 @@ Partial Class frmEntry
         Controls.Add(cmbType)
         Controls.Add(dtpEnd)
         Controls.Add(dtpStart)
-        Controls.Add(txbRecSend)
+        Controls.Add(txbSendCo)
         Controls.Add(txbChildName)
-        Controls.Add(grbOrangeStatus)
         Controls.Add(Label9)
         Controls.Add(Label8)
         Controls.Add(Label7)
@@ -344,17 +325,13 @@ Partial Class frmEntry
         Controls.Add(Label2)
         Controls.Add(Label1)
         Controls.Add(lblChildName)
+        FormBorderStyle = FormBorderStyle.FixedSingle
         Name = "frmEntry"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Entry Form"
-        grbOrangeStatus.ResumeLayout(False)
-        grbOrangeStatus.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
-
-    Friend WithEvents grbOrangeStatus As GroupBox
-    Friend WithEvents rdbSend As RadioButton
-    Friend WithEvents rdbReceive As RadioButton
     Friend WithEvents Label9 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label7 As Label
@@ -366,7 +343,7 @@ Partial Class frmEntry
     Friend WithEvents Label1 As Label
     Friend WithEvents lblChildName As Label
     Friend WithEvents txbChildName As TextBox
-    Friend WithEvents txbRecSend As TextBox
+    Friend WithEvents txbSendCo As TextBox
     Friend WithEvents dtpStart As DateTimePicker
     Friend WithEvents dtpEnd As DateTimePicker
     Friend WithEvents cmbType As ComboBox
@@ -380,4 +357,6 @@ Partial Class frmEntry
     Friend WithEvents btnSave As Button
     Friend WithEvents btnReturn As Button
     Friend WithEvents Label16 As Label
+    Friend WithEvents txbReceiveCo As TextBox
+    Friend WithEvents Label10 As Label
 End Class

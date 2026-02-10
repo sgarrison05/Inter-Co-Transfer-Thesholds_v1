@@ -28,8 +28,9 @@ Partial Class frm_Search
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(453, 247)
+        ClientSize = New Size(531, 247)
         Name = "frm_Search"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "Search for Child"
         ResumeLayout(False)
     End Sub
