@@ -28,9 +28,6 @@
         cmbType.Items.Add("Interim Inter Co Trans")
         cmbType.SelectedIndex = 0
 
-
-
-
     End Sub
 
     Private Sub btnReturn_Click(sender As Object, e As EventArgs) Handles btnReturn.Click
@@ -41,6 +38,8 @@
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+
+        'StripTime()
 
         childName = txbChildName.Text
         receivingCounty = txbReceiveCo.Text
@@ -54,6 +53,18 @@
 
         lblProgRptDate.Text = dteProgress.ToString
         lblTransThreshold.Text = dteThreshold.ToString
+        lblDaysRemainProg.Text = dteProgress.Subtract(DateTime.Now).Days.ToString
+        lblDaysRemainTrns.Text = dteThreshold.Subtract(DateTime.Now).Days.ToString
+
+        If lblProgRptDate.Text.Contains(":") Then
+            Dim rindex = lblProgRptDate.Text.IndexOf(":")
+            lblProgRptDate.Text = lblProgRptDate.Text.Remove(rindex - 2)
+        End If
+
+        If lblTransThreshold.Text.Contains(":") Then
+            Dim rindex = lblTransThreshold.Text.IndexOf(":")
+            lblTransThreshold.Text = lblTransThreshold.Text.Remove(rindex - 2)
+        End If
 
         If My.Computer.FileSystem.FileExists(frmMain.tfile) Then
 
@@ -65,15 +76,16 @@
             My.Computer.FileSystem.WriteAllText(frmMain.tfile,
                                                 "Child Name:".PadRight(20) & vbTab &
                                                 "Receiving County:" & vbTab &
-                                                "Sending County:".PadRight(6) & vbTab &
-                                                "Type of Transfer:" & vbTab &
+                                                "Sending County:".PadRight(18) & vbTab &
+                                                "Type of Transfer:".PadRight(20) & vbTab &
                                                 "Officer:".PadRight(2) & vbTab &
                                                 "Start Date:" & vbTab &
-                                                "Progress Rpt:" & vbTab &
-                                                "Prog Rpt Days Rem:" & vbTab &
-                                                "Days till Threshold:" & vbCrLf &
+                                                "Theshold:" & vbTab &
+                                                "Prog Rpt:" & vbTab &
+                                                "Prog Rpt Days:" & vbTab &
+                                                "Threshold Days:" & vbCrLf &
                                                 "-----------".PadRight(20) & vbTab &
-                                                "----------".PadRight(7) & vbTab &
+                                                "---------------" & vbTab &
                                                 "------------".PadRight(5) & vbTab &
                                                 "----------" & vbTab &
                                                 "----------" & vbTab &
@@ -88,22 +100,29 @@
                                                 childName.PadRight(20) & vbTab &
                                                 receivingCounty.PadRight(17) & vbTab &
                                                 sendingCounty.PadRight(17) & vbTab &
-                                                typeOfTransfer.PadRight(17) & vbTab &
+                                                typeOfTransfer.PadRight(22) & vbTab &
                                                 officer.PadRight(10) & vbTab &
                                                 dteStart.ToString("MM/dd/yyyy") & vbTab &
                                                 dteThreshold.ToString("MM/dd/yyyy") & vbTab &
                                                 dteProgress.ToString("MM/dd/yyyy") & vbTab &
-                                                DateDiff(DateInterval.Day, dteProgress, dteStart) &
-                                                DateDiff(DateInterval.Day, dteThreshold, dteStart) & vbCrLf,
+                                                lblDaysRemainProg.Text & " days".PadRight(12) & vbTab &
+                                                lblDaysRemainTrns.Text & " days" & vbCrLf,
                                                 True)
 
 
 
         End If
 
+    End Sub
 
+    Private Sub StripTime()
 
-
+        dtpStart.Format = DateTimePickerFormat.Custom
+        dtpStart.CustomFormat = "MM/dd/yyyy"
+        dtpEnd.Format = DateTimePickerFormat.Custom
+        dtpEnd.CustomFormat = "MM/dd/yyyy"
+        dteStart = Convert.ToDateTime(dtpStart.Text)
+        dteEnd = Convert.ToDateTime(dtpEnd.Text)
 
     End Sub
 
