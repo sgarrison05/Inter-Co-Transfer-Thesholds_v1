@@ -39,39 +39,25 @@
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
 
-        'StripTime()
+        CreateEntry()
+
+    End Sub
+
+    Private Sub CreateEntry()
 
         childName = txbChildName.Text
         receivingCounty = txbReceiveCo.Text
         sendingCounty = txbSendCo.Text
         typeOfTransfer = cmbType.Text
         officer = cmbOfficer.Text
-        dteStart = dtpStart.Value
-        dteProgress = dteStart.AddDays(90)
-        dteThreshold = dteStart.AddDays(180)
-        dtpEnd.Text = dteThreshold.ToString
-
-        lblProgRptDate.Text = dteProgress.ToString
-        lblTransThreshold.Text = dteThreshold.ToString
-        lblDaysRemainProg.Text = dteProgress.Subtract(DateTime.Now).Days.ToString
-        lblDaysRemainTrns.Text = dteThreshold.Subtract(DateTime.Now).Days.ToString
-
-        If lblProgRptDate.Text.Contains(":") Then
-            Dim rindex = lblProgRptDate.Text.IndexOf(":")
-            lblProgRptDate.Text = lblProgRptDate.Text.Remove(rindex - 2)
-        End If
-
-        If lblTransThreshold.Text.Contains(":") Then
-            Dim rindex = lblTransThreshold.Text.IndexOf(":")
-            lblTransThreshold.Text = lblTransThreshold.Text.Remove(rindex - 2)
-        End If
 
         If My.Computer.FileSystem.FileExists(frmMain.tfile) Then
 
 
+            'TODO: File Exists Path
 
         Else
-
+            'Creates the Directory/File and writes the header and first line of data
             My.Computer.FileSystem.CreateDirectory(frmMain.tdirectory)
             My.Computer.FileSystem.WriteAllText(frmMain.tfile,
                                                 "Child Name:".PadRight(20) & vbTab &
@@ -85,14 +71,14 @@
                                                 "Prog Rpt Days:" & vbTab &
                                                 "Threshold Days:" & vbCrLf &
                                                 "-----------".PadRight(20) & vbTab &
-                                                "---------------" & vbTab &
-                                                "------------".PadRight(5) & vbTab &
+                                                "---------------".PadRight(18) & vbTab &
+                                                "------------".PadRight(18) & vbTab &
+                                                "--------------".PadRight(20) & vbTab &
                                                 "----------" & vbTab &
                                                 "----------" & vbTab &
                                                 "----------" & vbTab &
                                                 "----------" & vbTab &
-                                                "----------" & vbTab &
-                                                "----------" & vbTab &
+                                                "----------".PadRight(14) & vbTab &
                                                 "----------" & ControlChars.NewLine,
                                                 True)
 
@@ -109,20 +95,36 @@
                                                 lblDaysRemainTrns.Text & " days" & vbCrLf,
                                                 True)
 
+        End If
+    End Sub
 
+    Private Sub dtpEnd_Leave(sender As Object, e As EventArgs) Handles dtpEnd.Leave
 
+        dtpEnd.Text = dteThreshold.ToString
+
+        lblProgRptDate.Text = dteProgress.ToString
+        lblTransThreshold.Text = dteThreshold.ToString
+        lblDaysRemainProg.Text = dteProgress.Subtract(Date.Now).Days.ToString
+        lblDaysRemainTrns.Text = dteThreshold.Subtract(Date.Now).Days.ToString
+
+        'Strips time out date/time
+        If lblProgRptDate.Text.Contains(":") Then
+            Dim rindex = lblProgRptDate.Text.IndexOf(":")
+            lblProgRptDate.Text = lblProgRptDate.Text.Remove(rindex - 2)
+        End If
+
+        If lblTransThreshold.Text.Contains(":") Then
+            Dim rindex = lblTransThreshold.Text.IndexOf(":")
+            lblTransThreshold.Text = lblTransThreshold.Text.Remove(rindex - 2)
         End If
 
     End Sub
 
-    Private Sub StripTime()
+    Private Sub dtpStart_Leave(sender As Object, e As EventArgs) Handles dtpStart.Leave
 
-        dtpStart.Format = DateTimePickerFormat.Custom
-        dtpStart.CustomFormat = "MM/dd/yyyy"
-        dtpEnd.Format = DateTimePickerFormat.Custom
-        dtpEnd.CustomFormat = "MM/dd/yyyy"
-        dteStart = Convert.ToDateTime(dtpStart.Text)
-        dteEnd = Convert.ToDateTime(dtpEnd.Text)
+        dteStart = dtpStart.Value
+        dteProgress = dteStart.AddDays(90)
+        dteThreshold = dteStart.AddDays(180)
 
     End Sub
 

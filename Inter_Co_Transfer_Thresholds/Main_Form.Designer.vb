@@ -60,13 +60,13 @@ Partial Class frmMain
         lblListing.ForeColor = SystemColors.Control
         lblListing.Location = New Point(12, 94)
         lblListing.Name = "lblListing"
-        lblListing.Size = New Size(1164, 290)
+        lblListing.Size = New Size(1178, 290)
         lblListing.TabIndex = 1
         ' 
         ' btnAdd
         ' 
         btnAdd.BackColor = Color.Green
-        btnAdd.Location = New Point(661, 558)
+        btnAdd.Location = New Point(766, 558)
         btnAdd.Name = "btnAdd"
         btnAdd.Size = New Size(75, 39)
         btnAdd.TabIndex = 2
@@ -76,7 +76,7 @@ Partial Class frmMain
         ' btnDelete
         ' 
         btnDelete.BackColor = Color.Red
-        btnDelete.Location = New Point(882, 558)
+        btnDelete.Location = New Point(987, 558)
         btnDelete.Name = "btnDelete"
         btnDelete.Size = New Size(75, 39)
         btnDelete.TabIndex = 3
@@ -202,7 +202,7 @@ Partial Class frmMain
         ' brnClose
         ' 
         brnClose.BackColor = Color.SkyBlue
-        brnClose.Location = New Point(994, 558)
+        brnClose.Location = New Point(1099, 558)
         brnClose.Name = "brnClose"
         brnClose.Size = New Size(75, 39)
         brnClose.TabIndex = 4
@@ -212,7 +212,7 @@ Partial Class frmMain
         ' Button1
         ' 
         Button1.BackColor = Color.Gold
-        Button1.Location = New Point(770, 558)
+        Button1.Location = New Point(875, 558)
         Button1.Name = "Button1"
         Button1.Size = New Size(75, 39)
         Button1.TabIndex = 20
@@ -225,7 +225,7 @@ Partial Class frmMain
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         CancelButton = brnClose
-        ClientSize = New Size(1190, 625)
+        ClientSize = New Size(1204, 625)
         Controls.Add(Button1)
         Controls.Add(dtpToday)
         Controls.Add(dtpOneEighty)
