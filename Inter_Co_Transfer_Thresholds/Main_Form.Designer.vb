@@ -106,20 +106,22 @@ Partial Class frmMain
         ' lblTotReceived
         ' 
         lblTotReceived.BorderStyle = BorderStyle.FixedSingle
-        lblTotReceived.Font = New Font("Segoe UI", 12F)
+        lblTotReceived.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         lblTotReceived.Location = New Point(154, 444)
         lblTotReceived.Name = "lblTotReceived"
         lblTotReceived.Size = New Size(75, 23)
         lblTotReceived.TabIndex = 8
+        lblTotReceived.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' lblTotSent
         ' 
         lblTotSent.BorderStyle = BorderStyle.FixedSingle
-        lblTotSent.Font = New Font("Segoe UI", 12F)
+        lblTotSent.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         lblTotSent.Location = New Point(294, 444)
         lblTotSent.Name = "lblTotSent"
         lblTotSent.Size = New Size(75, 23)
         lblTotSent.TabIndex = 9
+        lblTotSent.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Label5
         ' 

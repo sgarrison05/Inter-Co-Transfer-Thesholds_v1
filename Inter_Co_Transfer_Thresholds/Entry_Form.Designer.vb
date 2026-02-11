@@ -200,14 +200,17 @@ Partial Class frmEntry
         lblProgRptDate.Name = "lblProgRptDate"
         lblProgRptDate.Size = New Size(103, 23)
         lblProgRptDate.TabIndex = 34
+        lblProgRptDate.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' lblDaysRemainProg
         ' 
         lblDaysRemainProg.BorderStyle = BorderStyle.FixedSingle
+        lblDaysRemainProg.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         lblDaysRemainProg.Location = New Point(173, 337)
         lblDaysRemainProg.Name = "lblDaysRemainProg"
         lblDaysRemainProg.Size = New Size(57, 23)
         lblDaysRemainProg.TabIndex = 35
+        lblDaysRemainProg.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' lblTransThreshold
         ' 
@@ -216,14 +219,17 @@ Partial Class frmEntry
         lblTransThreshold.Name = "lblTransThreshold"
         lblTransThreshold.Size = New Size(103, 23)
         lblTransThreshold.TabIndex = 36
+        lblTransThreshold.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' lblDaysRemainTrns
         ' 
         lblDaysRemainTrns.BorderStyle = BorderStyle.FixedSingle
+        lblDaysRemainTrns.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         lblDaysRemainTrns.Location = New Point(558, 337)
         lblDaysRemainTrns.Name = "lblDaysRemainTrns"
         lblDaysRemainTrns.Size = New Size(57, 23)
         lblDaysRemainTrns.TabIndex = 37
+        lblDaysRemainTrns.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Label14
         ' 

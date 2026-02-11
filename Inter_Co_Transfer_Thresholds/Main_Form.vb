@@ -61,7 +61,7 @@ Public Class frmMain
 
         Dim myText As String = My.Computer.FileSystem.ReadAllText(tfile)
         Dim mySentence() As String = Split(myText, vbCrLf)
-        Dim listing As Integer = 0  ' Counter for each record
+        Dim listing As Integer = 1  ' Counter for each record
         Dim recieve As Integer = 0  ' Counter for receiving County
 
         For Each sentence As String In mySentence
@@ -93,7 +93,7 @@ Public Class frmMain
 
         Next
 
-        lblTotalChildren.Text = listing.ToString
+        lblTotalChildren.Text = listing.ToString - 1
         lblTotReceived.Text = recieve.ToString
 
     End Sub
