@@ -40,6 +40,7 @@ Partial Class frmMain
         dtpToday = New DateTimePicker()
         brnClose = New Button()
         Button1 = New Button()
+        btnRefresh = New Button()
         SuspendLayout()
         ' 
         ' lblListingID
@@ -221,6 +222,16 @@ Partial Class frmMain
         Button1.Text = "Search"
         Button1.UseVisualStyleBackColor = False
         ' 
+        ' btnRefresh
+        ' 
+        btnRefresh.BackColor = Color.DodgerBlue
+        btnRefresh.Location = New Point(650, 558)
+        btnRefresh.Name = "btnRefresh"
+        btnRefresh.Size = New Size(75, 39)
+        btnRefresh.TabIndex = 21
+        btnRefresh.Text = "Refresh"
+        btnRefresh.UseVisualStyleBackColor = False
+        ' 
         ' frmMain
         ' 
         AcceptButton = btnAdd
@@ -228,6 +239,7 @@ Partial Class frmMain
         AutoScaleMode = AutoScaleMode.Font
         CancelButton = brnClose
         ClientSize = New Size(1204, 625)
+        Controls.Add(btnRefresh)
         Controls.Add(Button1)
         Controls.Add(dtpToday)
         Controls.Add(dtpOneEighty)
@@ -272,5 +284,6 @@ Partial Class frmMain
     Friend WithEvents dtpToday As DateTimePicker
     Friend WithEvents brnClose As Button
     Friend WithEvents Button1 As Button
+    Friend WithEvents btnRefresh As Button
 
 End Class

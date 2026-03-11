@@ -32,6 +32,7 @@
 
     Private Sub btnReturn_Click(sender As Object, e As EventArgs) Handles btnReturn.Click
 
+        ClearForm()
         Me.Close()
         frmMain.Show()
 
@@ -53,8 +54,18 @@
 
         If My.Computer.FileSystem.FileExists(frmMain.tfile) Then
 
-
-            'TODO: File Exists Path
+            My.Computer.FileSystem.WriteAllText(frmMain.tfile,
+                                                childName.PadRight(20) & vbTab &
+                                                receivingCounty.PadRight(17) & vbTab &
+                                                sendingCounty.PadRight(17) & vbTab &
+                                                typeOfTransfer.PadRight(22) & vbTab &
+                                                officer.PadRight(10) & vbTab &
+                                                dteStart.ToString("MM/dd/yyyy") & vbTab &
+                                                dteThreshold.ToString("MM/dd/yyyy") & vbTab &
+                                                dteProgress.ToString("MM/dd/yyyy") & vbTab &
+                                                lblDaysRemainProg.Text & " days".PadRight(12) & vbTab &
+                                                lblDaysRemainTrns.Text & " days" & vbCrLf,
+                                                True)
 
         Else
             'Creates the Directory/File and writes the header and first line of data
@@ -66,7 +77,7 @@
                                                 "Type of Transfer:".PadRight(20) & vbTab &
                                                 "Officer:".PadRight(2) & vbTab &
                                                 "Start Date:" & vbTab &
-                                                "Theshold:" & vbTab &
+                                                "Threshold:" & vbTab &
                                                 "Prog Rpt:" & vbTab &
                                                 "Prog Rpt Days:" & vbTab &
                                                 "Threshold Days:" & vbCrLf &
@@ -96,6 +107,22 @@
                                                 True)
 
         End If
+    End Sub
+
+    Private Sub Separation()
+
+    End Sub
+
+    Private Sub ClearForm()
+
+        txbChildName.Clear()
+        txbReceiveCo.Clear()
+        txbSendCo.Clear()
+        cmbType.SelectedIndex = 0
+        cmbOfficer.SelectedIndex = 0
+        dtpStart.Text = Date.Today.ToString("MM/dd/yyyy")
+        dtpEnd.Text = Date.Today.AddDays(180).ToString("MM/dd/yyyy")
+
     End Sub
 
     Private Sub dtpEnd_Leave(sender As Object, e As EventArgs) Handles dtpEnd.Leave

@@ -2,7 +2,7 @@
 'Purpose:       To manage progress reports and thresholds for inter-county transfers
 'Created:       October 31, 2025
 'By:            Shon Garrison
-'Last Updated:  February 5, 2026
+'Last Updated:  March 2026
 'Version: 1.0
 
 Option Explicit On
@@ -63,38 +63,51 @@ Public Class frmMain
         Dim mySentence() As String = Split(myText, vbCrLf)
         Dim listing As Integer = 1  ' Counter for each record
         Dim recieve As Integer = 0  ' Counter for receiving County
+        Dim sent As Integer = 0     ' Counter for sending County
+        Dim dteICTThresh As Date
+        Dim dteProgRptThresh As Date
+        Dim display As String
 
         For Each sentence As String In mySentence
-
             If sentence.Contains("/"c) Then
 
                 Dim words() As String = Split(sentence, vbTab)
 
-                For Each word As String In words
-                    If word.Length > 0 Then
-                        Dim paddedWord As String = word.PadRight(20)
-                        sentence = sentence.Replace(word, paddedWord)
+                'Extract two dates to compute refresh on data pull
+                dteICTThresh = CDate(words(6).TrimEnd)
+                dteProgRptThresh = CDate(words(7).TrimEnd)
+
+                'get updated days remaining in progress report and program
+                Dim progRptDaysRefresh As Integer = dteProgRptThresh.Subtract(Date.Now).Days.ToString
+                Dim ictDaysRefresh As Integer = dteICTThresh.Subtract(Date.Now).Days.ToString
+
+                'inject refreshed days remaining into the appropriate array index for display on form
+                words(8) = progRptDaysRefresh.ToString & " days"
+                words(9) = ictDaysRefresh.ToString & " days"
+
+                For i = 0 To words.Length - 1
+                    If words(i).Length > 0 Then
+                        display = String.Join(" ".PadRight(5), words)
                     End If
                 Next
-
-                'TODO: Continue formatting once file creation through the application
-                'is complete and data is consistent
 
                 If words(1).TrimEnd = "Orange" Then
                     recieve += 1
                 End If
 
-                lblListing.Text &= listing.ToString & ".)  " & sentence & vbCrLf
+                If words(2).TrimEnd = "Orange" Then
+                    sent += 1
+                End If
+
+                lblListing.Text &= listing.ToString & ".)  " & display & vbCrLf
                 listing += 1
 
             End If
-
-
-
         Next
 
         lblTotalChildren.Text = listing.ToString - 1
         lblTotReceived.Text = recieve.ToString
+        lblTotSent.Text = sent.ToString
 
     End Sub
 
@@ -102,7 +115,7 @@ Public Class frmMain
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
 
-        Me.Hide()
+        Hide()
         frmEntry.ShowDialog()
 
     End Sub
@@ -111,6 +124,13 @@ Public Class frmMain
 
         Me.Close()
 
+    End Sub
+
+    Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
+
+        ' Clear form before each pull to prevent duplication of listings.
+        lblListing.Text = String.Empty
+        PullData()
     End Sub
 
 
