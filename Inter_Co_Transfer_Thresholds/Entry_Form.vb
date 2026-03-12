@@ -28,8 +28,8 @@
         cmbType.Items.Add("Interim Inter Co Trans")
         cmbType.SelectedIndex = 0
 
-        dtpStart.Text = Date.Today.ToString("MM/dd/yyyy")
-        dtpEnd.Text = Date.Today.AddDays(180).ToString("MM/dd/yyyy")
+        dtpStart.Text = GetStartDate(dteStart)
+        dtpEnd.Text = GetEndDate(dteEnd)
 
     End Sub
 
@@ -127,12 +127,34 @@
         lblDaysRemainTrns.Text = ""
         cmbType.SelectedIndex = 0
         cmbOfficer.SelectedIndex = 0
-        dtpStart.Text = Date.Today.ToString("MM/dd/yyyy")
-        dtpEnd.Text = Date.Today.AddDays(180).ToString("MM/dd/yyyy")
+        dtpStart.Text = GetStartDate(dteStart)
+        dtpEnd.Text = GetEndDate(dteEnd)
 
     End Sub
 
-    Private Sub dtpEnd_Leave(sender As Object, e As EventArgs) Handles dtpEnd.Leave
+    Private Function GetStartDate(ByVal dtepass As Date) As Date
+
+        dtepass = Date.Today.ToString("MM/dd/yyyy")
+        Return dtepass
+
+    End Function
+
+    Private Function GetEndDate(ByVal dtepass As Date) As Date
+
+        dtepass = Date.Today.AddDays(180).ToString("MM/dd/yyyy")
+        Return dtepass
+
+    End Function
+
+    Private Sub dtpStart_TextChanged(sender As Object, e As EventArgs) Handles dtpStart.TextChanged
+
+        dteStart = dtpStart.Value
+        dteProgress = dteStart.AddDays(90)
+        dteThreshold = GetEndDate(dteStart)
+
+    End Sub
+
+    Private Sub dtpEnd_TextChanged(sender As Object, e As EventArgs) Handles dtpEnd.TextChanged
 
         'TODO: Work on calcuations and the validity of this section
         dtpEnd.Text = dteThreshold.ToString
@@ -152,14 +174,6 @@
             Dim rindex = lblTransThreshold.Text.IndexOf(":")
             lblTransThreshold.Text = lblTransThreshold.Text.Remove(rindex - 2)
         End If
-
-    End Sub
-
-    Private Sub dtpStart_TextChanged(sender As Object, e As EventArgs) Handles dtpStart.TextChanged
-
-        dteStart = dtpStart.Value
-        dteProgress = dteStart.AddDays(90)
-        dteThreshold = dteStart.AddDays(180)
 
     End Sub
 End Class
