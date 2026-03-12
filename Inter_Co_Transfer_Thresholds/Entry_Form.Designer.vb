@@ -31,7 +31,7 @@ Partial Class frmEntry
         Label3 = New Label()
         Label2 = New Label()
         Label1 = New Label()
-        lblChildName = New Label()
+        lblChildNameID = New Label()
         txbChildName = New TextBox()
         txbSendCo = New TextBox()
         dtpStart = New DateTimePicker()
@@ -132,14 +132,14 @@ Partial Class frmEntry
         Label1.TabIndex = 18
         Label1.Text = "Start Date:"
         ' 
-        ' lblChildName
+        ' lblChildNameID
         ' 
-        lblChildName.AutoSize = True
-        lblChildName.Location = New Point(16, 21)
-        lblChildName.Name = "lblChildName"
-        lblChildName.Size = New Size(133, 15)
-        lblChildName.TabIndex = 17
-        lblChildName.Text = "Child Name: (Last, First)"
+        lblChildNameID.AutoSize = True
+        lblChildNameID.Location = New Point(16, 21)
+        lblChildNameID.Name = "lblChildNameID"
+        lblChildNameID.Size = New Size(133, 15)
+        lblChildNameID.TabIndex = 17
+        lblChildNameID.Text = "Child Name: (Last, First)"
         ' 
         ' txbChildName
         ' 
@@ -330,7 +330,7 @@ Partial Class frmEntry
         Controls.Add(Label3)
         Controls.Add(Label2)
         Controls.Add(Label1)
-        Controls.Add(lblChildName)
+        Controls.Add(lblChildNameID)
         FormBorderStyle = FormBorderStyle.FixedSingle
         Name = "frmEntry"
         StartPosition = FormStartPosition.CenterScreen
@@ -347,7 +347,7 @@ Partial Class frmEntry
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents lblChildName As Label
+    Friend WithEvents lblChildNameID As Label
     Friend WithEvents txbChildName As TextBox
     Friend WithEvents txbSendCo As TextBox
     Friend WithEvents dtpStart As DateTimePicker

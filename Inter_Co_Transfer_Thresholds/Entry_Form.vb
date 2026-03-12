@@ -28,6 +28,9 @@
         cmbType.Items.Add("Interim Inter Co Trans")
         cmbType.SelectedIndex = 0
 
+        dtpStart.Text = Date.Today.ToString("MM/dd/yyyy")
+        dtpEnd.Text = Date.Today.AddDays(180).ToString("MM/dd/yyyy")
+
     End Sub
 
     Private Sub btnReturn_Click(sender As Object, e As EventArgs) Handles btnReturn.Click
@@ -118,6 +121,10 @@
         txbChildName.Clear()
         txbReceiveCo.Clear()
         txbSendCo.Clear()
+        lblProgRptDate.Text = ""
+        lblTransThreshold.Text = ""
+        lblDaysRemainProg.Text = ""
+        lblDaysRemainTrns.Text = ""
         cmbType.SelectedIndex = 0
         cmbOfficer.SelectedIndex = 0
         dtpStart.Text = Date.Today.ToString("MM/dd/yyyy")
@@ -127,6 +134,7 @@
 
     Private Sub dtpEnd_Leave(sender As Object, e As EventArgs) Handles dtpEnd.Leave
 
+        'TODO: Work on calcuations and the validity of this section
         dtpEnd.Text = dteThreshold.ToString
 
         lblProgRptDate.Text = dteProgress.ToString
@@ -147,12 +155,11 @@
 
     End Sub
 
-    Private Sub dtpStart_Leave(sender As Object, e As EventArgs) Handles dtpStart.Leave
+    Private Sub dtpStart_TextChanged(sender As Object, e As EventArgs) Handles dtpStart.TextChanged
 
         dteStart = dtpStart.Value
         dteProgress = dteStart.AddDays(90)
         dteThreshold = dteStart.AddDays(180)
 
     End Sub
-
 End Class
