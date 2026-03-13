@@ -1,3 +1,3 @@
-﻿Public Class frm_Search
+﻿Public Class frmSearch
 
 End Class
