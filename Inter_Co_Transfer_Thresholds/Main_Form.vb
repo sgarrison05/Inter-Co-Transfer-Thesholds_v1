@@ -35,22 +35,14 @@ Public Class frmMain
                                      MessageBoxDefaultButton.Button1)
 
             If button = DialogResult.Yes Then
-
                 Me.Hide()
                 frmEntry.ShowDialog()
-
-                'TODO: Add code to create new file and initialize thresholds "PullData()"
-
             Else
                 button = DialogResult.No
                 Me.Close()
             End If
-
         Else
-
             PullData()
-
-
         End If
 
     End Sub
@@ -85,12 +77,14 @@ Public Class frmMain
                 words(8) = progRptDaysRefresh.ToString.PadLeft(3) & " days"
                 words(9) = ictDaysRefresh.ToString.PadLeft(3) & " days"
 
+                'Put the words back together with padding for display on form
                 For i = 0 To words.Length - 1
                     If words(i).Length > 0 Then
                         display = String.Join(" ".PadRight(5), words)
                     End If
                 Next
 
+                'Compute numbers of sending/receiving counties for summary at bottom of form
                 If words(1).TrimEnd = "Orange" Then
                     recieve += 1
                 End If

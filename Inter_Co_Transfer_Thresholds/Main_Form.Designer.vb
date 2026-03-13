@@ -176,6 +176,7 @@ Partial Class frmMain
         ' 
         ' dtpNinety
         ' 
+        dtpNinety.Enabled = False
         dtpNinety.Font = New Font("Segoe UI", 11.25F)
         dtpNinety.Format = DateTimePickerFormat.Short
         dtpNinety.Location = New Point(17, 514)
@@ -185,6 +186,7 @@ Partial Class frmMain
         ' 
         ' dtpOneEighty
         ' 
+        dtpOneEighty.Enabled = False
         dtpOneEighty.Font = New Font("Segoe UI", 11.25F)
         dtpOneEighty.Format = DateTimePickerFormat.Short
         dtpOneEighty.Location = New Point(17, 576)
