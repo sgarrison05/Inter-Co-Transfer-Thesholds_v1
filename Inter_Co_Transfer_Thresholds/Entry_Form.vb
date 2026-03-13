@@ -8,7 +8,6 @@
     Private dteStart As Date
     Private dteEnd As Date
     Private dteProgress As Date
-    Private dteThreshold As Date
 
     Private Sub frmEntry_Load(sender As Object, e As EventArgs) Handles Me.Load
 
@@ -28,8 +27,7 @@
         cmbType.Items.Add("Interim Inter Co Trans")
         cmbType.SelectedIndex = 0
 
-        dtpStart.Text = GetStartDate(dteStart)
-        dtpEnd.Text = GetEndDate(dteEnd)
+        FillData()
 
     End Sub
 
@@ -38,6 +36,7 @@
         ClearForm()
         Me.Close()
         frmMain.Show()
+        frmMain.btnRefresh.PerformClick()
 
     End Sub
 
@@ -64,7 +63,7 @@
                                                 typeOfTransfer.PadRight(22) & vbTab &
                                                 officer.PadRight(10) & vbTab &
                                                 dteStart.ToString("MM/dd/yyyy") & vbTab &
-                                                dteThreshold.ToString("MM/dd/yyyy") & vbTab &
+                                                dteEnd.ToString("MM/dd/yyyy") & vbTab &
                                                 dteProgress.ToString("MM/dd/yyyy") & vbTab &
                                                 lblDaysRemainProg.Text & " days".PadRight(12) & vbTab &
                                                 lblDaysRemainTrns.Text & " days" & vbCrLf,
@@ -103,7 +102,7 @@
                                                 typeOfTransfer.PadRight(22) & vbTab &
                                                 officer.PadRight(10) & vbTab &
                                                 dteStart.ToString("MM/dd/yyyy") & vbTab &
-                                                dteThreshold.ToString("MM/dd/yyyy") & vbTab &
+                                                dteEnd.ToString("MM/dd/yyyy") & vbTab &
                                                 dteProgress.ToString("MM/dd/yyyy") & vbTab &
                                                 lblDaysRemainProg.Text & " days".PadRight(12) & vbTab &
                                                 lblDaysRemainTrns.Text & " days" & vbCrLf,
@@ -127,53 +126,35 @@
         lblDaysRemainTrns.Text = ""
         cmbType.SelectedIndex = 0
         cmbOfficer.SelectedIndex = 0
-        dtpStart.Text = GetStartDate(dteStart)
-        dtpEnd.Text = GetEndDate(dteEnd)
+        dtpStart.Value = Date.Today
+        dtpEnd.Value = dteStart.AddDays(180)
 
     End Sub
 
-    Private Function GetStartDate(ByVal dtepass As Date) As Date
+    Private Sub FillData()
 
-        dtepass = Date.Today.ToString("MM/dd/yyyy")
-        Return dtepass
+        dteStart = CDate(dtpStart.Value)
+        dteProgress = CDate(dteStart.AddDays(90))
+        dteEnd = CDate(dteStart.AddDays(180))
 
-    End Function
+        lblProgRptDate.Text = dteProgress.ToString("MM/dd/yyyy")
+        lblTransThreshold.Text = dteEnd.ToString("MM/dd/yyyy")
+        lblDaysRemainProg.Text = dteProgress.Subtract(Date.Now).Days.ToString
+        lblDaysRemainTrns.Text = dteEnd.Subtract(Date.Now).Days.ToString
 
-    Private Function GetEndDate(ByVal dtepass As Date) As Date
-
-        dtepass = Date.Today.AddDays(180).ToString("MM/dd/yyyy")
-        Return dtepass
-
-    End Function
+    End Sub
 
     Private Sub dtpStart_TextChanged(sender As Object, e As EventArgs) Handles dtpStart.TextChanged
 
-        dteStart = dtpStart.Value
-        dteProgress = dteStart.AddDays(90)
-        dteThreshold = GetEndDate(dteStart)
+        FillData()
 
     End Sub
 
     Private Sub dtpEnd_TextChanged(sender As Object, e As EventArgs) Handles dtpEnd.TextChanged
 
-        'TODO: Work on calcuations and the validity of this section
-        dtpEnd.Text = dteThreshold.ToString
-
-        lblProgRptDate.Text = dteProgress.ToString
-        lblTransThreshold.Text = dteThreshold.ToString
-        lblDaysRemainProg.Text = dteProgress.Subtract(Date.Now).Days.ToString
-        lblDaysRemainTrns.Text = dteThreshold.Subtract(Date.Now).Days.ToString
-
-        'Strips time out date/time
-        If lblProgRptDate.Text.Contains(":") Then
-            Dim rindex = lblProgRptDate.Text.IndexOf(":")
-            lblProgRptDate.Text = lblProgRptDate.Text.Remove(rindex - 2)
-        End If
-
-        If lblTransThreshold.Text.Contains(":") Then
-            Dim rindex = lblTransThreshold.Text.IndexOf(":")
-            lblTransThreshold.Text = lblTransThreshold.Text.Remove(rindex - 2)
-        End If
+        'todo: work on calcuations and the validity of this section
 
     End Sub
+
+
 End Class
