@@ -11,21 +11,7 @@
 
     Private Sub frmEntry_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        'Add officers to combo box
-        cmbOfficer.Items.Add("[Select Officer]")
-        cmbOfficer.Items.Add("Garrison")
-        cmbOfficer.Items.Add("Anderson")
-        cmbOfficer.Items.Add("Klipstein")
-        cmbOfficer.Items.Add("Childress")
-        cmbOfficer.SelectedIndex = 0
-
-        'Add transfer types to combo box
-        cmbType.Items.Add("[Select Type]")
-        cmbType.Items.Add("Int Probation")
-        cmbType.Items.Add("Int Deferred")
-        cmbType.Items.Add("Int Det Sent Prob")
-        cmbType.Items.Add("Interim Inter Co Trans")
-        cmbType.SelectedIndex = 0
+        RefillCombo()
 
         FillData()
 
@@ -34,6 +20,8 @@
     Private Sub btnReturn_Click(sender As Object, e As EventArgs) Handles btnReturn.Click
 
         ClearForm()
+        cmbType.Items.Clear()
+        cmbOfficer.Items.Clear()
         Me.Close()
         frmMain.Show()
         frmMain.btnRefresh.PerformClick()
@@ -132,8 +120,8 @@
         lblTransThreshold.Text = ""
         lblDaysRemainProg.Text = ""
         lblDaysRemainTrns.Text = ""
-        cmbType.Items.Clear()
-        cmbOfficer.Items.Clear()
+        cmbOfficer.SelectedIndex = 0
+        cmbType.SelectedIndex = 0
         dtpStart.Value = Date.Today
         dtpEnd.Value = dteStart.AddDays(180)
 
@@ -151,6 +139,27 @@
         lblTransThreshold.Text = dteEnd.ToString("MM/dd/yyyy")
         lblDaysRemainProg.Text = dteProgress.Subtract(Date.Now).Days.ToString
         lblDaysRemainTrns.Text = dteEnd.Subtract(Date.Now).Days.ToString
+
+    End Sub
+
+    Private Sub RefillCombo()
+
+        'Add officers to combo box
+        cmbOfficer.Items.Add("[Select Officer]")
+        cmbOfficer.Items.Add("Garrison")
+        cmbOfficer.Items.Add("Anderson")
+        cmbOfficer.Items.Add("Klipstein")
+        cmbOfficer.Items.Add("Childress")
+        cmbOfficer.SelectedIndex = 0
+
+        'Add transfer types to combo box
+        cmbType.Items.Add("[Select Type]")
+        cmbType.Items.Add("Int Probation")
+        cmbType.Items.Add("Int Deferred")
+        cmbType.Items.Add("Int Det Sent Prob")
+        cmbType.Items.Add("Interim Inter Co Trans")
+        cmbType.SelectedIndex = 0
+
 
     End Sub
 
