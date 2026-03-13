@@ -5,7 +5,11 @@
     Dim myText As String = My.Computer.FileSystem.ReadAllText(tfile)
     Dim mySentence() As String = Split(myText, vbCrLf)
     Dim display As String
+    Private Sub frmSearch_Load(sender As Object, e As EventArgs) Handles Me.Load
 
+        txbLastName.Focus()
+
+    End Sub
     Public Sub FillLabel()
 
         For Each sentence As String In mySentence
@@ -33,6 +37,7 @@
     Private Sub CleanForm()
         txbLastName.Clear()
         lblDisplay.Text = String.Empty
+        txbLastName.Focus()
     End Sub
 
     Private Sub btnReturn_Click(sender As Object, e As EventArgs) Handles btnReturn.Click

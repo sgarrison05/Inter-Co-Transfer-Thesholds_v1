@@ -25,9 +25,9 @@ Partial Class frmSearch
         txbLastName = New TextBox()
         lblChildNameID = New Label()
         btnReturn = New Button()
-        btnClear = New Button()
         btnEnter = New Button()
         lblDisplay = New Label()
+        btnClear = New Button()
         SuspendLayout()
         ' 
         ' txbLastName
@@ -57,16 +57,6 @@ Partial Class frmSearch
         btnReturn.Text = "Rtn Main"
         btnReturn.UseVisualStyleBackColor = False
         ' 
-        ' btnClear
-        ' 
-        btnClear.BackColor = Color.Silver
-        btnClear.Location = New Point(353, 195)
-        btnClear.Name = "btnClear"
-        btnClear.Size = New Size(75, 40)
-        btnClear.TabIndex = 45
-        btnClear.Text = "Clear"
-        btnClear.UseVisualStyleBackColor = False
-        ' 
         ' btnEnter
         ' 
         btnEnter.BackColor = Color.GreenYellow
@@ -87,16 +77,25 @@ Partial Class frmSearch
         lblDisplay.Size = New Size(493, 93)
         lblDisplay.TabIndex = 47
         ' 
+        ' btnClear
+        ' 
+        btnClear.BackColor = SystemColors.ControlDark
+        btnClear.Location = New Point(354, 195)
+        btnClear.Name = "btnClear"
+        btnClear.Size = New Size(75, 40)
+        btnClear.TabIndex = 48
+        btnClear.Text = "Clear"
+        btnClear.UseVisualStyleBackColor = False
+        ' 
         ' frmSearch
         ' 
         AcceptButton = btnEnter
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        CancelButton = btnClear
         ClientSize = New Size(531, 247)
+        Controls.Add(btnClear)
         Controls.Add(lblDisplay)
         Controls.Add(btnEnter)
-        Controls.Add(btnClear)
         Controls.Add(btnReturn)
         Controls.Add(txbLastName)
         Controls.Add(lblChildNameID)
@@ -110,7 +109,7 @@ Partial Class frmSearch
     Friend WithEvents txbLastName As TextBox
     Friend WithEvents lblChildNameID As Label
     Friend WithEvents btnReturn As Button
-    Friend WithEvents btnClear As Button
     Friend WithEvents btnEnter As Button
     Friend WithEvents lblDisplay As Label
+    Friend WithEvents btnClear As Button
 End Class
