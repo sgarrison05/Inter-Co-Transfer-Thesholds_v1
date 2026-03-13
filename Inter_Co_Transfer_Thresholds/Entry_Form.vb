@@ -65,8 +65,8 @@
                                                 dteStart.ToString("MM/dd/yyyy") & vbTab &
                                                 dteEnd.ToString("MM/dd/yyyy") & vbTab &
                                                 dteProgress.ToString("MM/dd/yyyy") & vbTab &
-                                                lblDaysRemainProg.Text & " days".PadRight(12) & vbTab &
-                                                lblDaysRemainTrns.Text & " days" & vbCrLf,
+                                                lblDaysRemainProg.Text.PadLeft(3) & " days" & Space(4) & vbTab &
+                                                lblDaysRemainTrns.Text.PadLeft(3) & " days" & vbCrLf,
                                                 True)
 
         Else
@@ -104,8 +104,8 @@
                                                 dteStart.ToString("MM/dd/yyyy") & vbTab &
                                                 dteEnd.ToString("MM/dd/yyyy") & vbTab &
                                                 dteProgress.ToString("MM/dd/yyyy") & vbTab &
-                                                lblDaysRemainProg.Text & " days".PadRight(12) & vbTab &
-                                                lblDaysRemainTrns.Text & " days" & vbCrLf,
+                                                lblDaysRemainProg.Text.PadLeft(3) & " days" & Space(4) & vbTab &
+                                                lblDaysRemainTrns.Text.PadLeft(3) & " days" & vbCrLf,
                                                 True)
 
         End If
@@ -124,8 +124,8 @@
         lblTransThreshold.Text = ""
         lblDaysRemainProg.Text = ""
         lblDaysRemainTrns.Text = ""
-        cmbType.SelectedIndex = 0
-        cmbOfficer.SelectedIndex = 0
+        cmbType.Items.Clear()
+        cmbOfficer.Items.Clear()
         dtpStart.Value = Date.Today
         dtpEnd.Value = dteStart.AddDays(180)
 
@@ -136,6 +136,8 @@
         dteStart = CDate(dtpStart.Value)
         dteProgress = CDate(dteStart.AddDays(90))
         dteEnd = CDate(dteStart.AddDays(180))
+
+        dtpEnd.Value = dteEnd
 
         lblProgRptDate.Text = dteProgress.ToString("MM/dd/yyyy")
         lblTransThreshold.Text = dteEnd.ToString("MM/dd/yyyy")

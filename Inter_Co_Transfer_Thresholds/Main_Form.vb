@@ -82,8 +82,8 @@ Public Class frmMain
                 Dim ictDaysRefresh As Integer = dteICTThresh.Subtract(Date.Now).Days.ToString
 
                 'inject refreshed days remaining into the appropriate array index for display on form
-                words(8) = progRptDaysRefresh.ToString & " days"
-                words(9) = ictDaysRefresh.ToString & " days"
+                words(8) = progRptDaysRefresh.ToString.PadLeft(3) & " days"
+                words(9) = ictDaysRefresh.ToString.PadLeft(3) & " days"
 
                 For i = 0 To words.Length - 1
                     If words(i).Length > 0 Then
