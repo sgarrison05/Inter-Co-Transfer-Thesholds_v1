@@ -120,6 +120,13 @@ Public Class frmMain
 
     End Sub
 
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+
+        Hide()
+        frmSearch.ShowDialog()
+
+    End Sub
+
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
 
         ' Clear form before each pull to prevent duplication of listings.

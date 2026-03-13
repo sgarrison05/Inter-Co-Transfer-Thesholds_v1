@@ -27,7 +27,7 @@ Partial Class frmSearch
         btnReturn = New Button()
         btnClear = New Button()
         btnEnter = New Button()
-        Label1 = New Label()
+        lblDisplay = New Label()
         SuspendLayout()
         ' 
         ' txbLastName
@@ -77,22 +77,24 @@ Partial Class frmSearch
         btnEnter.Text = "Enter"
         btnEnter.UseVisualStyleBackColor = False
         ' 
-        ' Label1
+        ' lblDisplay
         ' 
-        Label1.BackColor = Color.Black
-        Label1.ForeColor = Color.White
-        Label1.Location = New Point(12, 77)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(493, 93)
-        Label1.TabIndex = 47
-        Label1.Text = "Label1"
+        lblDisplay.BackColor = Color.Black
+        lblDisplay.Font = New Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lblDisplay.ForeColor = Color.White
+        lblDisplay.Location = New Point(12, 77)
+        lblDisplay.Name = "lblDisplay"
+        lblDisplay.Size = New Size(493, 93)
+        lblDisplay.TabIndex = 47
         ' 
         ' frmSearch
         ' 
+        AcceptButton = btnEnter
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        CancelButton = btnClear
         ClientSize = New Size(531, 247)
-        Controls.Add(Label1)
+        Controls.Add(lblDisplay)
         Controls.Add(btnEnter)
         Controls.Add(btnClear)
         Controls.Add(btnReturn)
@@ -110,5 +112,5 @@ Partial Class frmSearch
     Friend WithEvents btnReturn As Button
     Friend WithEvents btnClear As Button
     Friend WithEvents btnEnter As Button
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lblDisplay As Label
 End Class

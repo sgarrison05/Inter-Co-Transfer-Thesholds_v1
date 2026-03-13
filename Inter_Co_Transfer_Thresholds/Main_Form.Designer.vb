@@ -39,7 +39,7 @@ Partial Class frmMain
         dtpOneEighty = New DateTimePicker()
         dtpToday = New DateTimePicker()
         brnClose = New Button()
-        Button1 = New Button()
+        btnSearch = New Button()
         btnRefresh = New Button()
         SuspendLayout()
         ' 
@@ -214,15 +214,15 @@ Partial Class frmMain
         brnClose.Text = "Close"
         brnClose.UseVisualStyleBackColor = False
         ' 
-        ' Button1
+        ' btnSearch
         ' 
-        Button1.BackColor = Color.Gold
-        Button1.Location = New Point(875, 558)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(75, 39)
-        Button1.TabIndex = 20
-        Button1.Text = "Search"
-        Button1.UseVisualStyleBackColor = False
+        btnSearch.BackColor = Color.Gold
+        btnSearch.Location = New Point(875, 558)
+        btnSearch.Name = "btnSearch"
+        btnSearch.Size = New Size(75, 39)
+        btnSearch.TabIndex = 20
+        btnSearch.Text = "Search"
+        btnSearch.UseVisualStyleBackColor = False
         ' 
         ' btnRefresh
         ' 
@@ -242,7 +242,7 @@ Partial Class frmMain
         CancelButton = brnClose
         ClientSize = New Size(1204, 625)
         Controls.Add(btnRefresh)
-        Controls.Add(Button1)
+        Controls.Add(btnSearch)
         Controls.Add(dtpToday)
         Controls.Add(dtpOneEighty)
         Controls.Add(dtpNinety)
@@ -285,7 +285,7 @@ Partial Class frmMain
     Friend WithEvents dtpOneEighty As DateTimePicker
     Friend WithEvents dtpToday As DateTimePicker
     Friend WithEvents brnClose As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnSearch As Button
     Friend WithEvents btnRefresh As Button
 
 End Class
