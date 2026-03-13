@@ -46,6 +46,14 @@
 
     End Sub
 
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+
+        ClearForm()
+
+        txbChildName.Focus()
+
+    End Sub
+
     Private Sub CreateEntry()
 
         childName = txbChildName.Text
@@ -158,5 +166,23 @@
 
     End Sub
 
+    Private Sub txbReceiveCo_TextChanged(sender As Object, e As EventArgs) Handles txbReceiveCo.TextChanged
 
+        If txbReceiveCo.Text = "Orange" Then
+            txbReceiveCo.BackColor = Color.Orange
+        Else
+            txbReceiveCo.BackColor = Color.White
+        End If
+
+    End Sub
+
+    Private Sub txbSendCo_TextChanged(sender As Object, e As EventArgs) Handles txbSendCo.TextChanged
+
+        If txbSendCo.Text = "Orange" Then
+            txbSendCo.BackColor = Color.Orange
+        Else
+            txbSendCo.BackColor = Color.White
+        End If
+
+    End Sub
 End Class
