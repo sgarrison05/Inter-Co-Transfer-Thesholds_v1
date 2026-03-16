@@ -134,5 +134,8 @@ Public Class frmMain
         PullData()
     End Sub
 
-
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        Me.Hide()
+        frmDelete.ShowDialog()
+    End Sub
 End Class
