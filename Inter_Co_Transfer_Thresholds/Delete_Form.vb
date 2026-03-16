@@ -1,8 +1,7 @@
 ﻿Public Class frmDelete
     Public Const tdirectory As String = "D:\Temp\Transfers"
     Public Const tfile As String = "D:\Temp\Transfers\ICT_Thresholds.txt"
-    Dim myText As String = My.Computer.FileSystem.ReadAllText(tfile)
-    Dim myLines() As String = Split(myText, vbCrLf)
+    Dim lines As New List(Of String)()
     Dim LinetoDelete As Integer = 0
 
     Private Sub frmDelete_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -11,23 +10,29 @@
 
     Public Sub DeleteRecord()
 
-        For Each line As String In myLines
+        FileOpen(1, tfile, OpenMode.Input)
+        While Not EOF(1)
+            Dim line As String = LineInput(1)
+            lines.Add(line)
 
-            If line.Contains(txbLastName.Text) Then
-
-                If LinetoDelete >= 0 And LinetoDelete < line.Count Then
-                    MessageBox.Show(line & LinetoDelete.ToString.PadLeft(5))
-                    'line.Remove(LinetoDelete)
-                End If
-                Exit For
-
-            Else
-                MessageBox.Show("Name not found.", "Delete Child", MessageBoxButtons.OK)
+            If lines.Contains(txbLastName.Text) Then
+                Exit While
             End If
 
             LinetoDelete += 1
 
+        End While
+        FileClose(1)
+
+        If LinetoDelete >= 0 And LinetoDelete < lines.Count Then
+            lines.RemoveAt(LinetoDelete)
+        End If
+
+        FileOpen(1, tfile, OpenMode.Output)
+        For Each line In lines
+            PrintLine(1, line)
         Next
+        FileClose(1)
 
     End Sub
 
