@@ -20,8 +20,10 @@
                 'Put the words back together with padding for display on form
                 For i = 0 To words.Length - 1
                     If words(i).Length > 0 Then
-                        display = String.Join(" ".PadRight(5), words(0) & words(3) &
-                                              words(4) & words(6))
+                        display = String.Join(" ".PadRight(5), words(0) &
+                                                               words(3) &
+                                                               words(4) &
+                                                               words(6))
                     End If
                 Next
                 Exit For
