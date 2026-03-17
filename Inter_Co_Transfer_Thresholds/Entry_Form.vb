@@ -126,6 +126,7 @@
         cmbType.SelectedIndex = 0
         dtpStart.Value = Date.Today
         dtpEnd.Value = dteStart.AddDays(180)
+        txbChildName.Focus()
 
     End Sub
 

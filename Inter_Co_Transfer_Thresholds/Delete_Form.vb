@@ -30,8 +30,8 @@ Public Class frmDelete
 
             Do Until newLineIndex = -1
 
-                'get each line
-                entry = readtxt.Substring(entryIndex, newLineIndex - entryIndex)
+                'get each line (don't forget about the new line character " + 1")
+                entry = readtxt.Substring(entryIndex, (newLineIndex - entryIndex) + 1)
 
                 'finds line with name and skips it
                 If entry.Contains(name) Then
