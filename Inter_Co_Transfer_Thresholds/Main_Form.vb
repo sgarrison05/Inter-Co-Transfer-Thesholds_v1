@@ -11,8 +11,8 @@ Imports System.Globalization
 Public Class frmMain
 
     Private title As String = "Inter County Transfer Thresholds"
-    Public Const tdirectory As String = "D:\Temp\Transfers"
-    Public Const tfile As String = "D:\Temp\Transfers\ICT_Thresholds.txt"
+    Public Const tdirectory As String = "C:\Transfers"
+    Public Const tfile As String = "C:\Transfers\ICT_Thresholds.txt"
 
     '------------------------------ Form Events --------------------------------------------------
 

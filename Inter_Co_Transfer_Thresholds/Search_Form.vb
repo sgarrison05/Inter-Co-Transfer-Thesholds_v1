@@ -1,8 +1,6 @@
 ﻿Public Class frmSearch
 
-    Public Const tdirectory As String = "D:\Temp\Transfers"
-    Public Const tfile As String = "D:\Temp\Transfers\ICT_Thresholds.txt"
-    Dim myText As String = My.Computer.FileSystem.ReadAllText(tfile)
+    Dim myText As String = My.Computer.FileSystem.ReadAllText(frmMain.tfile)
     Dim mySentence() As String = Split(myText, vbCrLf)
     Dim display As String
     Private Sub frmSearch_Load(sender As Object, e As EventArgs) Handles Me.Load
