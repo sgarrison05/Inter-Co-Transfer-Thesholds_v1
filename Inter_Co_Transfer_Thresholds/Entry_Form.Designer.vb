@@ -266,7 +266,7 @@ Partial Class frmEntry
         btnReturn.Location = New Point(643, 117)
         btnReturn.Name = "btnReturn"
         btnReturn.Size = New Size(75, 40)
-        btnReturn.TabIndex = 8
+        btnReturn.TabIndex = 9
         btnReturn.Text = "Rtn Main"
         btnReturn.UseVisualStyleBackColor = False
         ' 
@@ -303,7 +303,7 @@ Partial Class frmEntry
         btnClear.Location = New Point(643, 67)
         btnClear.Name = "btnClear"
         btnClear.Size = New Size(75, 40)
-        btnClear.TabIndex = 44
+        btnClear.TabIndex = 8
         btnClear.Text = "Clear"
         btnClear.UseVisualStyleBackColor = False
         ' 

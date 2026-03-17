@@ -70,7 +70,7 @@ Partial Class frmMain
         btnAdd.Location = New Point(766, 558)
         btnAdd.Name = "btnAdd"
         btnAdd.Size = New Size(75, 39)
-        btnAdd.TabIndex = 2
+        btnAdd.TabIndex = 1
         btnAdd.Text = "Add New"
         btnAdd.UseVisualStyleBackColor = False
         ' 
@@ -220,7 +220,7 @@ Partial Class frmMain
         btnSearch.Location = New Point(875, 558)
         btnSearch.Name = "btnSearch"
         btnSearch.Size = New Size(75, 39)
-        btnSearch.TabIndex = 20
+        btnSearch.TabIndex = 2
         btnSearch.Text = "Search"
         btnSearch.UseVisualStyleBackColor = False
         ' 
@@ -230,7 +230,7 @@ Partial Class frmMain
         btnRefresh.Location = New Point(650, 558)
         btnRefresh.Name = "btnRefresh"
         btnRefresh.Size = New Size(75, 39)
-        btnRefresh.TabIndex = 21
+        btnRefresh.TabIndex = 0
         btnRefresh.Text = "Refresh"
         btnRefresh.UseVisualStyleBackColor = False
         ' 

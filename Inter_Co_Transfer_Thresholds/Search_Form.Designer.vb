@@ -36,7 +36,7 @@ Partial Class frmSearch
         txbLastName.Location = New Point(12, 27)
         txbLastName.Name = "txbLastName"
         txbLastName.Size = New Size(335, 29)
-        txbLastName.TabIndex = 18
+        txbLastName.TabIndex = 0
         ' 
         ' lblChildNameID
         ' 
@@ -53,7 +53,7 @@ Partial Class frmSearch
         btnReturn.Location = New Point(444, 195)
         btnReturn.Name = "btnReturn"
         btnReturn.Size = New Size(75, 40)
-        btnReturn.TabIndex = 20
+        btnReturn.TabIndex = 3
         btnReturn.Text = "Rtn Main"
         btnReturn.UseVisualStyleBackColor = False
         ' 
@@ -63,7 +63,7 @@ Partial Class frmSearch
         btnEnter.Location = New Point(260, 195)
         btnEnter.Name = "btnEnter"
         btnEnter.Size = New Size(75, 40)
-        btnEnter.TabIndex = 46
+        btnEnter.TabIndex = 1
         btnEnter.Text = "Enter"
         btnEnter.UseVisualStyleBackColor = False
         ' 
@@ -83,7 +83,7 @@ Partial Class frmSearch
         btnClear.Location = New Point(354, 195)
         btnClear.Name = "btnClear"
         btnClear.Size = New Size(75, 40)
-        btnClear.TabIndex = 48
+        btnClear.TabIndex = 2
         btnClear.Text = "Clear"
         btnClear.UseVisualStyleBackColor = False
         ' 
@@ -92,6 +92,7 @@ Partial Class frmSearch
         AcceptButton = btnEnter
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        CancelButton = btnReturn
         ClientSize = New Size(531, 247)
         Controls.Add(btnClear)
         Controls.Add(lblDisplay)

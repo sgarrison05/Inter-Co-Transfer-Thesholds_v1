@@ -35,7 +35,7 @@ Partial Class frmDelete
         txbLastName.Location = New Point(12, 38)
         txbLastName.Name = "txbLastName"
         txbLastName.Size = New Size(335, 29)
-        txbLastName.TabIndex = 20
+        txbLastName.TabIndex = 0
         ' 
         ' lblChildNameID
         ' 
@@ -52,7 +52,7 @@ Partial Class frmDelete
         btnReturn.Location = New Point(432, 128)
         btnReturn.Name = "btnReturn"
         btnReturn.Size = New Size(75, 40)
-        btnReturn.TabIndex = 22
+        btnReturn.TabIndex = 3
         btnReturn.Text = "Rtn Main"
         btnReturn.UseVisualStyleBackColor = False
         ' 
@@ -62,7 +62,7 @@ Partial Class frmDelete
         btnClear.Location = New Point(432, 73)
         btnClear.Name = "btnClear"
         btnClear.Size = New Size(75, 40)
-        btnClear.TabIndex = 49
+        btnClear.TabIndex = 2
         btnClear.Text = "Clear"
         btnClear.UseVisualStyleBackColor = False
         ' 
@@ -72,14 +72,16 @@ Partial Class frmDelete
         btnDelete.Location = New Point(432, 20)
         btnDelete.Name = "btnDelete"
         btnDelete.Size = New Size(75, 40)
-        btnDelete.TabIndex = 50
+        btnDelete.TabIndex = 1
         btnDelete.Text = "Delete"
         btnDelete.UseVisualStyleBackColor = False
         ' 
         ' frmDelete
         ' 
+        AcceptButton = btnDelete
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        CancelButton = btnReturn
         ClientSize = New Size(519, 180)
         Controls.Add(btnDelete)
         Controls.Add(btnClear)
