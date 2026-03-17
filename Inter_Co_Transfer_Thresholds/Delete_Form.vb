@@ -1,38 +1,67 @@
-﻿Public Class frmDelete
+﻿Imports System.IO
+Imports System.Text
+
+Public Class frmDelete
     Public Const tdirectory As String = "D:\Temp\Transfers"
     Public Const tfile As String = "D:\Temp\Transfers\ICT_Thresholds.txt"
-    Dim lines As New List(Of String)()
-    Dim LinetoDelete As Integer = 0
+
 
     Private Sub frmDelete_Load(sender As Object, e As EventArgs) Handles Me.Load
         txbLastName.Focus()
     End Sub
 
-    Public Sub DeleteRecord()
+    Private Sub DeleteRecord(filepath As String, name As String)
 
-        FileOpen(1, tfile, OpenMode.Input)
-        While Not EOF(1)
-            Dim line As String = LineInput(1)
-            lines.Add(line)
+        Dim tempPath = Path.Combine(Path.GetDirectoryName(filepath),
+                        Path.GetFileNameWithoutExtension(filepath) & ".tmp" &
+                        Path.GetExtension(filepath))
 
-            If lines.Contains(txbLastName.Text) Then
-                Exit While
-            End If
+        Dim readtxt As String
+        Dim entry As String
+        Dim newLineIndex As Integer = 0
+        Dim entryIndex As Integer = 0
 
-            LinetoDelete += 1
+        If My.Computer.FileSystem.FileExists(filepath) Then
 
-        End While
-        FileClose(1)
+            readtxt = File.ReadAllText(filepath)
 
-        If LinetoDelete >= 0 And LinetoDelete < lines.Count Then
-            lines.RemoveAt(LinetoDelete)
+            'Primer for first red of readtext
+            newLineIndex = readtxt.IndexOf(ControlChars.NewLine, entryIndex)
+
+            Do Until newLineIndex = -1
+
+                'get each line
+                entry = readtxt.Substring(entryIndex, newLineIndex - entryIndex)
+
+                'finds line with name and skips it
+                If entry.Contains(name) Then
+
+                    MessageBox.Show("Record deleted.")
+
+                    entryIndex = newLineIndex + 1
+                    newLineIndex = readtxt.IndexOf(ControlChars.NewLine, entryIndex)
+
+                Else
+
+                    'if not found writes line to temp file and moves on
+                    My.Computer.FileSystem.WriteAllText(tempPath, entry, True)
+
+                    entryIndex = newLineIndex + 1
+                    newLineIndex = readtxt.IndexOf(ControlChars.NewLine, entryIndex)
+
+                End If
+
+            Loop
+
+            'Deletes original file and renames temp file to original name
+            File.Delete(filepath)
+            File.Move(tempPath, filepath)
+
+        Else
+
+            MessageBox.Show("File does not exist.")
+
         End If
-
-        FileOpen(1, tfile, OpenMode.Output)
-        For Each line In lines
-            PrintLine(1, line)
-        Next
-        FileClose(1)
 
     End Sub
 
@@ -43,7 +72,10 @@
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
 
-        DeleteRecord()
+        Dim lastName As String = txbLastName.Text.Trim()
+        DeleteRecord(tfile, lastName)
+        CleanForm()
+
 
     End Sub
 
@@ -59,6 +91,7 @@
         CleanForm()
         Me.Close()
         frmMain.Show()
+        frmMain.btnRefresh.PerformClick()
 
     End Sub
 
