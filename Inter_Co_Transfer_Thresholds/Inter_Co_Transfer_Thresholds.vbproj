@@ -2,13 +2,14 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows10.0.17763.0</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <StartupObject>Inter_Co_Transfer_Thresholds.My.MyApplication</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
     <Title>Inte Co Transfer Thresholds</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+    <ImportedNamespaces>System.Data=False,System.Drawing=False,System.Windows.Forms=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,Inter_Co_Transfer_Thresholds=True</ImportedNamespaces>
   </PropertyGroup>
 
   <ItemGroup>
