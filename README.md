@@ -9,9 +9,9 @@ to monitor and report on the transfer thresholds, ensuring compliance with progr
 
 1.) **Adding/Deleting Clients**: The script allows users to easily add or delete clients from the tracking system.
 
-![image](assets/Screenshot _frmAdd.png)
+![image](assets/Screenshot_frmAdd.png)
 
-![image](assets/Screenshot _frmDelete.png)
+![image](assets/Screenshot_frmDelete.png)
 
 2.) **Searching**: Users can search for specific clients or transfer records to quickly access relevant information.
 
