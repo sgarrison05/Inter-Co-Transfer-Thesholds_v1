@@ -2,8 +2,6 @@
 Imports System.Text
 
 Public Class frmDelete
-    Public Const tdirectory As String = "D:\Temp\Transfers"
-    Public Const tfile As String = "D:\Temp\Transfers\ICT_Thresholds.txt"
 
 
     Private Sub frmDelete_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -73,7 +71,7 @@ Public Class frmDelete
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
 
         Dim lastName As String = txbLastName.Text.Trim()
-        DeleteRecord(tfile, lastName)
+        DeleteRecord(frmMain.tfile, lastName)
         CleanForm()
 
 

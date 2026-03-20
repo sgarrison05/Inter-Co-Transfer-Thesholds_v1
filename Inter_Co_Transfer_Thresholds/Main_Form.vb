@@ -8,6 +8,9 @@
 Option Explicit On
 Imports System.Globalization
 
+Imports System.IO
+Imports System.Text
+
 Public Class frmMain
 
     Private title As String = "Inter County Transfer Thresholds"
@@ -42,7 +45,50 @@ Public Class frmMain
                 Me.Close()
             End If
         Else
+
             PullData()
+
+            Dim filepath As String = tfile
+            Dim tempPath = Path.Combine(Path.GetDirectoryName(filepath),
+                        Path.GetFileNameWithoutExtension(filepath) & ".tmp" &
+                        Path.GetExtension(filepath))
+
+            'Needs to update the file with headings
+            My.Computer.FileSystem.WriteAllText(tempPath,
+                                                "Child Name:".PadRight(20) & vbTab &
+                                                "Receiving County:" & vbTab &
+                                                "Sending County:".PadRight(18) & vbTab &
+                                                "Type of Transfer:".PadRight(20) & vbTab &
+                                                "Officer:".PadRight(2) & vbTab &
+                                                "Start Date:" & vbTab &
+                                                "Threshold:" & vbTab &
+                                                "Prog Rpt:" & vbTab &
+                                                "Prog Rpt Days:" & vbTab &
+                                                "Threshold Days:" & vbCrLf &
+                                                "-----------".PadRight(20) & vbTab &
+                                                "---------------".PadRight(18) & vbTab &
+                                                "------------".PadRight(18) & vbTab &
+                                                "--------------".PadRight(20) & vbTab &
+                                                "----------" & vbTab &
+                                                "----------" & vbTab &
+                                                "----------" & vbTab &
+                                                "----------" & vbTab &
+                                                "----------".PadRight(14) & vbTab &
+                                                "----------" & ControlChars.NewLine,
+                                                False)
+
+            'file refreshed with days remaining
+
+            'TODO: Add code to write to text file with refreshed days remaining for each record
+
+
+            My.Computer.FileSystem.WriteAllText(tempPath, lblListing.Text, True)
+
+
+            'Deletes original file and renames temp file to original name
+            File.Delete(filepath)
+            File.Move(tempPath, filepath)
+
         End If
 
     End Sub
@@ -63,7 +109,7 @@ Public Class frmMain
         For Each sentence As String In mySentence
             If sentence.Contains("/"c) Then
 
-                Dim words() As String = Split(sentence, vbTab)
+                Dim words() = Split(sentence, vbTab)
 
                 'Extract two dates to compute refresh on data pull
                 dteICTThresh = CDate(words(6).TrimEnd)
