@@ -80,7 +80,7 @@ Public Class frmMain
             'file refreshed with days remaining
 
             'TODO: Add code to write to text file with refreshed days remaining for each record
-
+            'Read from tfile (filepath) prior to modification instead of passing arrays.
 
             My.Computer.FileSystem.WriteAllText(tempPath, lblListing.Text, True)
 
