@@ -40,9 +40,10 @@ Public Class frmMain
 
             If button = DialogResult.Yes Then
                 Me.Hide()
-                frmEntry.ShowDialog()
+                Using f As New frmEntry()
+                    f.ShowDialog()
+                End Using
             Else
-                button = DialogResult.No
                 Me.Close()
             End If
         Else
