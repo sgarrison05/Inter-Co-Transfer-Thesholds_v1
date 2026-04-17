@@ -3,9 +3,10 @@ Imports System.Text
 
 Public Class frmDelete
 
-
     Private Sub frmDelete_Load(sender As Object, e As EventArgs) Handles Me.Load
+
         txbLastName.Focus()
+
     End Sub
 
     Private Sub DeleteRecord(filepath As String, name As String)
@@ -18,42 +19,54 @@ Public Class frmDelete
         Dim entry As String
         Dim newLineIndex As Integer = 0
         Dim entryIndex As Integer = 0
+        Dim recordFound As Boolean = False
 
         If My.Computer.FileSystem.FileExists(filepath) Then
 
-            readtxt = File.ReadAllText(filepath)
+            Try
 
-            'Primer for first red of readtext
-            newLineIndex = readtxt.IndexOf(ControlChars.NewLine, entryIndex)
+                readtxt = File.ReadAllText(filepath)
 
-            Do Until newLineIndex = -1
+                'Primer for first read of readtext
+                newLineIndex = readtxt.IndexOf(ControlChars.NewLine, entryIndex)
 
-                'get each line (don't forget about the new line character " + 1")
-                entry = readtxt.Substring(entryIndex, (newLineIndex - entryIndex) + 1)
+                Do Until newLineIndex = -1
 
-                'finds line with name and skips it
-                If entry.Contains(name) Then
+                    'get each line (don't forget about the new line character " + 1")
+                    entry = readtxt.Substring(entryIndex, (newLineIndex - entryIndex) + 1)
 
-                    MessageBox.Show("Record deleted.")
+                    'finds line with name and skips it
+                    If entry.IndexOf(name, StringComparison.OrdinalIgnoreCase) >= 0 Then
+
+                        recordFound = True
+
+                    Else
+
+                        'if not found writes line to temp file and moves on
+                        My.Computer.FileSystem.WriteAllText(tempPath, entry, True)
+                    End If
 
                     entryIndex = newLineIndex + 1
                     newLineIndex = readtxt.IndexOf(ControlChars.NewLine, entryIndex)
 
+                Loop
+
+                'Deletes original file and renames temp file to original name
+                File.Delete(filepath)
+                File.Move(tempPath, filepath)
+
+                If recordFound Then
+                    MessageBox.Show("Record for " & name & " has been deleted.",
+                                    "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
-
-                    'if not found writes line to temp file and moves on
-                    My.Computer.FileSystem.WriteAllText(tempPath, entry, True)
-
-                    entryIndex = newLineIndex + 1
-                    newLineIndex = readtxt.IndexOf(ControlChars.NewLine, entryIndex)
-
+                    MessageBox.Show("No record found for: " & name,
+                                    "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
 
-            Loop
-
-            'Deletes original file and renames temp file to original name
-            File.Delete(filepath)
-            File.Move(tempPath, filepath)
+            Catch ex As Exception
+                MessageBox.Show("Error deleting record: " & ex.Message,
+                                "Delete", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
 
         Else
 
@@ -64,16 +77,31 @@ Public Class frmDelete
     End Sub
 
     Public Sub CleanForm()
+
         txbLastName.Clear()
         txbLastName.Focus()
+
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
 
         Dim lastName As String = txbLastName.Text.Trim()
-        DeleteRecord(frmMain.tfile, lastName)
-        CleanForm()
 
+        If String.IsNullOrWhiteSpace(lastName) Then
+            MessageBox.Show("Please enter a last name to delete.",
+                    "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+        Dim confirm As DialogResult = MessageBox.Show(
+            "Are you sure you want to delete the record for: " & lastName & "?",
+            "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
+            MessageBoxDefaultButton.Button2)
+
+        If confirm = DialogResult.Yes Then
+            DeleteRecord(frmMain.tfile, lastName)
+            CleanForm()
+        End If
 
     End Sub
 
@@ -87,9 +115,9 @@ Public Class frmDelete
     Private Sub btnReturn_Click(sender As Object, e As EventArgs) Handles btnReturn.Click
 
         CleanForm()
-        Me.Close()
         frmMain.Show()
-        frmMain.btnRefresh.PerformClick()
+        frmMain.lblListing.Text = "Please Press Refresh to Update Data."
+        Me.Close()
 
     End Sub
 

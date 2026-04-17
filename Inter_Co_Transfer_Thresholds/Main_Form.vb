@@ -10,12 +10,13 @@ Imports System.Globalization
 
 Imports System.IO
 Imports System.Text
+Imports System.Windows
 
 Public Class frmMain
 
     Private title As String = "Inter County Transfer Thresholds"
-    Public Const tdirectory As String = "D:\Temp\Transfers"
-    Public Const tfile As String = "D:\Temp\Transfers\ICT_Thresholds.txt"
+    Public Shared ReadOnly tdirectory As String = Path.Combine("D:\Temp", "Transfers")
+    Public Shared ReadOnly tfile As String = Path.Combine(tdirectory, "ICT_Thresholds.txt")
 
     '------------------------------ Form Events --------------------------------------------------
 
@@ -48,107 +49,69 @@ Public Class frmMain
 
             PullData()
 
-            Dim filepath As String = tfile
-            Dim tempPath = Path.Combine(Path.GetDirectoryName(filepath),
-                        Path.GetFileNameWithoutExtension(filepath) & ".tmp" &
-                        Path.GetExtension(filepath))
-
-            'Needs to update the file with headings
-            My.Computer.FileSystem.WriteAllText(tempPath,
-                                                "Child Name:".PadRight(20) & vbTab &
-                                                "Receiving County:" & vbTab &
-                                                "Sending County:".PadRight(18) & vbTab &
-                                                "Type of Transfer:".PadRight(20) & vbTab &
-                                                "Officer:".PadRight(2) & vbTab &
-                                                "Start Date:" & vbTab &
-                                                "Threshold:" & vbTab &
-                                                "Prog Rpt:" & vbTab &
-                                                "Prog Rpt Days:" & vbTab &
-                                                "Threshold Days:" & vbCrLf &
-                                                "-----------".PadRight(20) & vbTab &
-                                                "---------------".PadRight(18) & vbTab &
-                                                "------------".PadRight(18) & vbTab &
-                                                "--------------".PadRight(20) & vbTab &
-                                                "----------" & vbTab &
-                                                "----------" & vbTab &
-                                                "----------" & vbTab &
-                                                "----------" & vbTab &
-                                                "----------".PadRight(14) & vbTab &
-                                                "----------" & ControlChars.NewLine,
-                                                False)
-
-            'file refreshed with days remaining
-
-            'TODO: Add code to write to text file with refreshed days remaining for each record
-            'Read from tfile (filepath) prior to modification instead of passing arrays.
-
-            My.Computer.FileSystem.WriteAllText(tempPath, lblListing.Text, True)
-
-
-            'Deletes original file and renames temp file to original name
-            File.Delete(filepath)
-            File.Move(tempPath, filepath)
-
         End If
-
     End Sub
 
     '------------------------------ Private Subroutines  ---------------------------------------
 
     Private Sub PullData()
+        Try
+            Dim myText As String = My.Computer.FileSystem.ReadAllText(tfile)
+            Dim mySentence() As String = Split(myText, vbCrLf)
+            Dim listing As Integer = 1  ' Counter for each record
+            Dim recieve As Integer = 0  ' Counter for receiving County
+            Dim sent As Integer = 0     ' Counter for sending County
+            Dim dteICTThresh As Date
+            Dim dteProgRptThresh As Date
+            Dim display As String
 
-        Dim myText As String = My.Computer.FileSystem.ReadAllText(tfile)
-        Dim mySentence() As String = Split(myText, vbCrLf)
-        Dim listing As Integer = 1  ' Counter for each record
-        Dim recieve As Integer = 0  ' Counter for receiving County
-        Dim sent As Integer = 0     ' Counter for sending County
-        Dim dteICTThresh As Date
-        Dim dteProgRptThresh As Date
-        Dim display As String
+            For Each sentence As String In mySentence
+                If sentence.Contains("/"c) Then
 
-        For Each sentence As String In mySentence
-            If sentence.Contains("/"c) Then
+                    Dim words() = Split(sentence, vbTab)
 
-                Dim words() = Split(sentence, vbTab)
+                    'Extract two dates to compute refresh on data pull
+                    dteICTThresh = CDate(words(6).TrimEnd)
+                    dteProgRptThresh = CDate(words(7).TrimEnd)
 
-                'Extract two dates to compute refresh on data pull
-                dteICTThresh = CDate(words(6).TrimEnd)
-                dteProgRptThresh = CDate(words(7).TrimEnd)
+                    'get updated days remaining in progress report and program
+                    Dim progRptDaysRefresh As Integer = dteProgRptThresh.Subtract(Date.Now).Days
+                    Dim ictDaysRefresh As Integer = dteICTThresh.Subtract(Date.Now).Days
 
-                'get updated days remaining in progress report and program
-                Dim progRptDaysRefresh As Integer = dteProgRptThresh.Subtract(Date.Now).Days.ToString
-                Dim ictDaysRefresh As Integer = dteICTThresh.Subtract(Date.Now).Days.ToString
+                    'inject refreshed days remaining into the appropriate array index for display on form
+                    words(8) = progRptDaysRefresh.ToString.PadLeft(3) & " days"
+                    words(9) = ictDaysRefresh.ToString.PadLeft(3) & " days"
 
-                'inject refreshed days remaining into the appropriate array index for display on form
-                words(8) = progRptDaysRefresh.ToString.PadLeft(3) & " days"
-                words(9) = ictDaysRefresh.ToString.PadLeft(3) & " days"
+                    'Put the words back together with padding for display on form
 
-                'Put the words back together with padding for display on form
-                For i = 0 To words.Length - 1
-                    If words(i).Length > 0 Then
-                        display = String.Join(" ".PadRight(5), words)
+                    display = String.Join(" ".PadRight(5), words)
+
+                    'Compute numbers of sending/receiving counties for summary at bottom of form
+                    If words(1).TrimEnd = "Orange" Then
+                        recieve += 1
                     End If
-                Next
 
-                'Compute numbers of sending/receiving counties for summary at bottom of form
-                If words(1).TrimEnd = "Orange" Then
-                    recieve += 1
+                    If words(2).TrimEnd = "Orange" Then
+                        sent += 1
+                    End If
+
+                    lblListing.Text &= listing.ToString & ".)  " & display & vbCrLf
+                    listing += 1
+
                 End If
+            Next
 
-                If words(2).TrimEnd = "Orange" Then
-                    sent += 1
-                End If
+            lblTotalChildren.Text = (listing - 1).ToString
+            lblTotReceived.Text = recieve.ToString
+            lblTotSent.Text = sent.ToString
 
-                lblListing.Text &= listing.ToString & ".)  " & display & vbCrLf
-                listing += 1
-
-            End If
-        Next
-
-        lblTotalChildren.Text = listing.ToString - 1
-        lblTotReceived.Text = recieve.ToString
-        lblTotSent.Text = sent.ToString
-
+        Catch ex As Exception
+            MessageBox.Show("An error occurred while pulling data: " &
+                            ex.Message,
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error)
+        End Try
     End Sub
 
     '------------------------------ Button Events ----------------------------------------------
@@ -156,7 +119,9 @@ Public Class frmMain
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
 
         Hide()
-        frmEntry.ShowDialog()
+        Using f As New frmEntry()
+            f.ShowDialog()
+        End Using
 
     End Sub
 
@@ -169,7 +134,9 @@ Public Class frmMain
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
 
         Hide()
-        frmSearch.ShowDialog()
+        Using f As New frmSearch()
+            f.ShowDialog()
+        End Using
 
     End Sub
 
@@ -182,6 +149,8 @@ Public Class frmMain
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         Me.Hide()
-        frmDelete.ShowDialog()
+        Using f As New frmDelete()
+            f.ShowDialog()
+        End Using
     End Sub
 End Class
