@@ -12,19 +12,28 @@
     Private Sub frmEntry_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         RefillCombo()
-
         FillData()
 
     End Sub
 
     Private Sub btnReturn_Click(sender As Object, e As EventArgs) Handles btnReturn.Click
 
+        ' Warn user if fields have data before closing
+        If Not String.IsNullOrWhiteSpace(txbChildName.Text) Then
+            Dim confirm As DialogResult = MessageBox.Show(
+                "You have unsaved data. Are you sure you want to return?",
+                "Unsaved Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.No Then Return
+        End If
+
         ClearForm()
         cmbType.Items.Clear()
         cmbOfficer.Items.Clear()
-        Me.Close()
+        frmMain.lblListing.Text = String.Empty
         frmMain.Show()
-        frmMain.btnRefresh.PerformClick()
+        frmMain.lblListing.Text = "Please Press Refresh to Update Data."
+        Me.Close()
 
     End Sub
 
@@ -32,45 +41,100 @@
 
         CreateEntry()
 
-        ClearForm()
-
     End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
 
         ClearForm()
-
         txbChildName.Focus()
 
     End Sub
 
     Private Sub CreateEntry()
 
+        If String.IsNullOrWhiteSpace(txbChildName.Text) Then
+            MessageBox.Show("Please enter a child name.",
+                    "Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txbChildName.Focus()
+            Return
+        End If
+
+        If String.IsNullOrWhiteSpace(txbReceiveCo.Text) OrElse
+       String.IsNullOrWhiteSpace(txbSendCo.Text) Then
+            MessageBox.Show("Please enter both sending and receiving counties.",
+                        "Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        If cmbType.SelectedIndex = 0 Then
+            MessageBox.Show("Please select a transfer type.",
+                    "Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            cmbType.Focus()
+            Return
+        End If
+
+        If cmbOfficer.SelectedIndex = 0 Then
+            MessageBox.Show("Please select an officer.",
+                    "Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            cmbOfficer.Focus()
+            Return
+        End If
+
+        ' Assign field values to variables
         childName = txbChildName.Text
         receivingCounty = txbReceiveCo.Text
         sendingCounty = txbSendCo.Text
         typeOfTransfer = cmbType.Text
         officer = cmbOfficer.Text
 
-        If My.Computer.FileSystem.FileExists(frmMain.tfile) Then
+        Try
 
-            My.Computer.FileSystem.WriteAllText(frmMain.tfile,
-                                                childName.PadRight(20) & vbTab &
-                                                receivingCounty.PadRight(17) & vbTab &
-                                                sendingCounty.PadRight(17) & vbTab &
-                                                typeOfTransfer.PadRight(22) & vbTab &
-                                                officer.PadRight(10) & vbTab &
-                                                dteStart.ToString("MM/dd/yyyy") & vbTab &
-                                                dteEnd.ToString("MM/dd/yyyy") & vbTab &
-                                                dteProgress.ToString("MM/dd/yyyy") & vbTab &
-                                                lblDaysRemainProg.Text.PadLeft(3) & " days" & Space(4) & vbTab &
-                                                lblDaysRemainTrns.Text.PadLeft(3) & " days" & vbCrLf,
-                                                True)
+            If My.Computer.FileSystem.FileExists(frmMain.tfile) Then
 
-        Else
-            'Creates the Directory/File and writes the header and first line of data
-            My.Computer.FileSystem.CreateDirectory(frmMain.tdirectory)
-            My.Computer.FileSystem.WriteAllText(frmMain.tfile,
+                WriteDataLine()
+
+            Else
+
+                'Creates the Directory/File and writes the header and first line of data
+                My.Computer.FileSystem.CreateDirectory(frmMain.tdirectory)
+                WriteHeader()
+                WriteDataLine()
+
+            End If
+
+            ' Confirm successful save to user
+            MessageBox.Show("Record for " & childName & " has been saved.",
+                            "Entry", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            ClearForm()
+
+        Catch ex As Exception
+            MessageBox.Show("Error Saving Record: " & ex.Message,
+                            "Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
+    Private Sub WriteDataLine()
+
+        My.Computer.FileSystem.WriteAllText(frmMain.tfile,
+                                               childName.PadRight(20) & vbTab &
+                                               receivingCounty.PadRight(17) & vbTab &
+                                               sendingCounty.PadRight(17) & vbTab &
+                                               typeOfTransfer.PadRight(22) & vbTab &
+                                               officer.PadRight(10) & vbTab &
+                                               dteStart.ToString("MM/dd/yyyy") & vbTab &
+                                               dteEnd.ToString("MM/dd/yyyy") & vbTab &
+                                               dteProgress.ToString("MM/dd/yyyy") & vbTab &
+                                               lblDaysRemainProg.Text.PadLeft(3) & " days" & Space(4) & vbTab &
+                                               lblDaysRemainTrns.Text.PadLeft(3) & " days" & vbCrLf,
+                                               True)
+
+    End Sub
+
+    Private Sub WriteHeader()
+
+        My.Computer.FileSystem.WriteAllText(frmMain.tfile,
                                                 "Child Name:".PadRight(20) & vbTab &
                                                 "Receiving County:" & vbTab &
                                                 "Sending County:".PadRight(18) & vbTab &
@@ -93,24 +157,6 @@
                                                 "----------" & ControlChars.NewLine,
                                                 True)
 
-            My.Computer.FileSystem.WriteAllText(frmMain.tfile,
-                                                childName.PadRight(20) & vbTab &
-                                                receivingCounty.PadRight(17) & vbTab &
-                                                sendingCounty.PadRight(17) & vbTab &
-                                                typeOfTransfer.PadRight(22) & vbTab &
-                                                officer.PadRight(10) & vbTab &
-                                                dteStart.ToString("MM/dd/yyyy") & vbTab &
-                                                dteEnd.ToString("MM/dd/yyyy") & vbTab &
-                                                dteProgress.ToString("MM/dd/yyyy") & vbTab &
-                                                lblDaysRemainProg.Text.PadLeft(3) & " days" & Space(4) & vbTab &
-                                                lblDaysRemainTrns.Text.PadLeft(3) & " days" & vbCrLf,
-                                                True)
-
-        End If
-    End Sub
-
-    Private Sub Separation()
-
     End Sub
 
     Private Sub ClearForm()
@@ -125,7 +171,7 @@
         cmbOfficer.SelectedIndex = 0
         cmbType.SelectedIndex = 0
         dtpStart.Value = Date.Today
-        dtpEnd.Value = dteStart.AddDays(180)
+        dtpEnd.Value = Date.Today.AddDays(180)
         txbChildName.Focus()
 
     End Sub
@@ -172,15 +218,9 @@
 
     End Sub
 
-    Private Sub dtpEnd_TextChanged(sender As Object, e As EventArgs) Handles dtpEnd.TextChanged
-
-        'todo: work on calcuations and the validity of this section
-
-    End Sub
-
     Private Sub txbReceiveCo_TextChanged(sender As Object, e As EventArgs) Handles txbReceiveCo.TextChanged
 
-        If txbReceiveCo.Text = "Orange" Then
+        If txbReceiveCo.Text.Trim().Equals("Orange", StringComparison.OrdinalIgnoreCase) Then
             txbReceiveCo.BackColor = Color.Orange
         Else
             txbReceiveCo.BackColor = Color.White
@@ -190,11 +230,12 @@
 
     Private Sub txbSendCo_TextChanged(sender As Object, e As EventArgs) Handles txbSendCo.TextChanged
 
-        If txbSendCo.Text = "Orange" Then
+        If txbSendCo.Text.Trim().Equals("Orange", StringComparison.OrdinalIgnoreCase) Then
             txbSendCo.BackColor = Color.Orange
         Else
             txbSendCo.BackColor = Color.White
         End If
 
     End Sub
+
 End Class
